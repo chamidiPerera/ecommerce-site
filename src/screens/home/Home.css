@@ -1,0 +1,82 @@
+@import '../../Theme.css';
+
+.home {
+    background-image: url("/src/assets/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 91vh;
+    background-color: var(--color-black);
+    
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+#dark .home{
+    background-color: var(--color-black);
+}
+
+#light .home{
+    background-color: var(--color-white);
+}
+
+.text-area {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    text-align: center;      
+}
+
+.home .text-area h1 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-header);
+    color: var(--color-black);
+    font-weight: bold;
+    margin: 0%;
+}
+
+.home .text-area h4 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    color: var(--color-black);
+    padding-top: var(--spacing-md);
+    font-weight:normal;
+    border-top: 1px solid black;
+    align-self: center;
+    width: 80%;   
+}
+
+#dark .home .text-area h1,
+#dark .home .text-area h4 {
+    color: var(--color-white);
+}
+#dark .home .text-area h4 {
+    border-top: 1px solid var(--color-white);
+}
+
+#light .home .text-area h1,
+#light .home .text-area h4 {
+    color: var(--color-black);
+}
+#light .home .text-area h4 {
+    border-top: 1px solid var(--color-black);
+}
+
+
+img {
+    max-width: 20%;
+    height: auto; 
+    display: flex;
+    margin: 0 auto; 
+}
+
+@media (max-width: 768px) {
+    .home {
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh; 
+    }
+}

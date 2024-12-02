@@ -1,0 +1,40 @@
+@import '../../Theme.css';
+
+.nav-bar {
+  background-color: var(--color-white);
+  padding: var(--spacing-xs);
+  border-bottom: 0.3px solid black;
+}
+
+#dark .nav-bar {
+  background-color: var(--color-black );
+}
+
+#light .nav-bar {
+  background-color: var(--color-white);
+}
+
+.logo {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
+  font-weight: normal;
+  margin: 0%;
+}
+
+#dark .logo {
+  color: var(--color-white);
+}
+
+#light .logo {
+  color: var(--color-black);
+}
+
+.text-button-area{
+    border-right: 1px solid black;
+    padding: 0 10px 0 0;
+}
+
+.button{
+    margin: 0 10px 0 0;
+}

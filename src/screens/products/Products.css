@@ -1,0 +1,19 @@
+@import '../../../src/Theme.css';
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg);
+  }
+  
+  .product-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures the image stays contained */
+    border: 1px solid #ddd; /* Optional styling for clarity */
+  }
+  
+
+  
