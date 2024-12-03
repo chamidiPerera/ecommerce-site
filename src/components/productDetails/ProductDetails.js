@@ -11,7 +11,7 @@ function ProductDetails() {
   const [alertVisible, setAlertVisible] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [mainImage, setMainImage] = useState(item.image);
-  const [selectedSize, setSelectedSize] = useState(null); // New state for selected size
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const totalAmount = item.price * quantity;
 
@@ -78,7 +78,7 @@ function ProductDetails() {
   };
 
   const handleSizeClick = (size) => {
-    setSelectedSize(size); // Set the selected size
+    setSelectedSize(size);
   };
 
   return (

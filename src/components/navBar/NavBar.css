@@ -1,25 +1,26 @@
 .nav-bar {
   background-color: var(--color-white);
-  padding: var(--spacing-xs);
-  border-bottom: 0.3px solid black;
+  padding         : var(--spacing-xs);
+  border-bottom   : 0.3px solid black;
 }
 
 #dark .nav-bar {
   background-color: var(--color-black);
-  border-bottom: 0.3px solid gray;
+  border-bottom   : 0.3px solid gray;
 }
 
 #light .nav-bar {
   background-color: var(--color-white);
-  border-bottom: 0.3px solid black;
+  border-bottom   : 0.3px solid black;
 }
 
 .logo {
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
-  color: var(--color-black);
+  font-size  : var(--font-size-lg);
+  color      : var(--color-black);
   font-weight: normal;
-  margin: 0%;
+  margin     : 0%;
+  cursor     : pointer;
 }
 
 #dark .logo {
@@ -30,52 +31,41 @@
   color: var(--color-black);
 }
 
-.search {
-  display: flex;
-  padding: 5px;
+.nav-btn {
+  display    : flex;
   align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 400px;
+  gap        : 10px;
 }
 
-.search .MuiOutlinedInput-root {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
+@media (max-width: 768px) {
+  .logo {
+    display: none;
+  }
 
-.search .MuiOutlinedInput-root input {
-  color: var(--color-black); 
-}
+  .nav-bar {
+    padding: var(--spacing-sm);
+  }
 
-#light .search .MuiOutlinedInput-root input {
-  color: var(--color-black); 
-}
+  .nav-bar .MuiButton-root {
+    font-size: 12px;
+  }
 
-#dark .search .MuiOutlinedInput-root input {
-  color: var(--color-white); 
-}
+  .MuiButton-root {
+    padding: 8px;
+  }
 
-.search .MuiOutlinedInput-root:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
+  .MuiBox-root {
+    flex-direction: column;
+  }
 
-.search button {
-  background-color: white;
-  color: black;
-  border-radius: 8px;
-  height: 36px;
-  min-width: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .footer-icons {
+    font-size: 18px;
+  }
 
-.search button:disabled {
-  background-color: #dcdcdc;
-  color: #aaa;
-}
-
-.search button:not(:disabled):hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  .nav-btn {
+    display: flex;
+    gap: 16px; /* Adjust the spacing if needed */
+    justify-content: center; /* Center the buttons horizontally */
+    flex-wrap: wrap; /* Ensure it wraps to the next line if space is tight */
+  }
 }

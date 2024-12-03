@@ -78,9 +78,9 @@ function Cart() {
   };
 
   const handleApplyPromoCode = () => {
-    if (promoCode === "122948") {
+    if (promoCode === "1234") {
       setDiscount(20);
-    } else if (promoCode === "5763") {
+    } else if (promoCode === "5678") {
       setDiscount(5);
     } else {
       alert("Invalid promo code.");

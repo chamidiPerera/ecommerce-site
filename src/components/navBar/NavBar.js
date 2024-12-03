@@ -17,11 +17,11 @@ import ModeToggle from "../modeToggle/ModeToggle";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = React.useState(null);
   const loggedInEmail = localStorage.getItem("loggedInEmail");
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [loggedInUser, setLoggedInUser] = React.useState(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
@@ -103,10 +103,8 @@ export default function NavBar() {
             >
               <MenuItem onClick={handleMenuClose}>HOME</MenuItem>
               <MenuItem onClick={handleMenuClose}>PRODUCTS</MenuItem>
-              <MenuItem onClick={handleMenuClose}>FAVORITES</MenuItem>
             </Menu>
           </Box>
-
           <Box
             sx={{
               flexGrow: 1,
@@ -117,52 +115,6 @@ export default function NavBar() {
               flexWrap: "wrap",
             }}
           >
-            <div className="search">
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                color="gray"
-                label="Search"
-                size="small"
-                value={searchQuery}
-                onChange={(text) => setSearchQuery(text.target.value)}
-                sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: "8px",
-                  height: "36px",
-                  "& .MuiOutlinedInput-root": {
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  },
-                  "& input": {
-                    paddingLeft: "12px",
-                  },
-                }}
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                onClick={handleSearch}
-                disabled={!searchQuery}
-                sx={{
-                  backgroundColor: "white",
-                  color: "black",
-                  height: "36px",
-                  minWidth: "36px",
-                  transition: "background-color 0.5s ease",
-                  "&:disabled": {
-                    backgroundColor: "#dcdcdc",
-                  },
-                  "&:not(:disabled)": {
-                    "&:hover": {
-                      backgroundColor: "rgba(255, 255, 255, 0.8)",
-                    },
-                  },
-                }}
-              >
-                <SearchIcon />
-              </Button>
-            </div>
             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
               <Button
                 variant="text"
@@ -196,8 +148,15 @@ export default function NavBar() {
               </Button>
             </Box>
           </Box>
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box
+            className="nav-btn"
+            sx={{
+              display: "flex",
+              gap: 2,
+              alignItems: "center",
+              flexDirection: { xs: "row", md: "row" },
+            }}
+          >
             <ModeToggle />
             <Button
               variant="text"
