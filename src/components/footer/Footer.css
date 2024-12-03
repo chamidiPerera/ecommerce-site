@@ -1,143 +1,129 @@
 @import "../../Theme.css";
 
 .footer {
-    width           : 100vw;
-    height          : 50vh;
+    width: 94vw;
+    padding: 50px;
     background-color: black;
-    padding         : 50px;
-    display         : flex;
-    flex-wrap       : wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .footer-left,
 .footer-right {
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
-    justify-content: space-evenly;
-    width          : 50%;
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .footer-left {
-    padding-right: 20px;
+    margin-right: 2%;
 }
 
 .footer-right {
-    border-left : 0.5px solid white;
+    border-left: 0.5px solid white;
     padding-left: 20px;
 }
 
 .footer .footer-left h1 {
     font-family: var(--font-family);
-    font-size  : var(--font-size-xxl);
-    color      : var(--color-white);
+    font-size: var(--font-size-xxl);
+    color: var(--color-white);
     font-weight: bold;
-    margin     : 0;
-}
-
-.footer .footer-right h4 {
-    font-family: var(--font-family);
-    font-size  : var(--font-size-lg);
-    color      : var(--color-white);
-    font-weight: normal;
-    margin     : 0;
+    margin: 0;
 }
 
 .footer .footer-left p {
     font-family: var(--font-family);
-    font-size  : var(--font-size-sm);
-    color      : var(--color-white);
-    font-weight: normal;
-    margin     : 0;
-    width      : 40vw;
-    text-align : center;
+    font-size: var(--font-size-sm);
+    color: var(--color-white);
     line-height: var(--spacing-lg);
-    text-align : justify;
+    margin: 20px 0;
+    width: 90%;
+    text-align: justify;
+}
+
+.footer .footer-right h4 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    color: var(--color-white);
+    font-weight: normal;
+    margin: 20px 0 10px;
 }
 
 .social-media-icon-group {
-    width          : 10vw;
-    display        : flex;
-    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
 }
 
 .footer-icons {
-    color        : var(--color-white);
-    border       : 0.5px solid white;
-    padding      : 10px;
+    color: #ffffff;
+    padding: 10px;
+    border: 1px solid white;
     border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.footer-icons:hover {
+    background-color: #555;
 }
 
 .payment-method-icon-group {
-    width          : 20vw;
-    display        : flex;
-    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
 }
 
 .payment-method-image {
-    width : 40px;
-    height: auto;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
+.payment-method-image:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
     .footer {
-        padding       : 0;
+        padding: 10px;
         flex-direction: column;
-        height        : auto;
+        align-items: center;
+        text-align: center;
     }
 
+    .footer-right {
+        border-left: none;
+        padding-left: 20px;
+    }
     .footer-left,
     .footer-right {
-        width        : 100%;
-        border-left  : none;
-        padding      : 10px 0;
+        width: 90%;
+        text-align: center;
         margin-bottom: 20px;
     }
 
     .footer .footer-left p {
-        width    : 80%;
-        font-size: var(--font-size-xs);
+        width: 100%;
     }
 
-    .social-media-icon-group {
-        width          : 40%;
-        justify-content: center;
-        margin-bottom  : 10px;
-    }
-
+    .social-media-icon-group,
     .payment-method-icon-group {
-        width          : 60%;
+        width: 100%;
         justify-content: center;
+    }
+
+    .footer-icons {
+        padding: 8px;
     }
 
     .payment-method-image {
-        width: 30px;
-    }
-
-    .footer .footer-left h1 {
-        font-size: var(--font-size-xl);
-    }
-
-    .footer .footer-right h4 {
-        font-size: var(--font-size-md);
-    }
-}
-
-@media (max-width: 480px) {
-    .footer .footer-left h1 {
-        font-size: var(--font-size-lg);
-    }
-
-    .footer .footer-left p {
-        width    : 90%;
-        font-size: var(--font-size-xxs);
-    }
-
-    .social-media-icon-group {
-        width: 50%;
-    }
-
-    .payment-method-icon-group {
-        width: 70%;
+        height: 30px;
     }
 }

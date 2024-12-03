@@ -9,7 +9,7 @@ function ModeToggle() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div>
-      {theme == "light" ? (
+      {theme === "light" ? (
         <Button variant="text" sx={{ color: "#000000" }} onClick={toggleTheme}>
           <LightModeIcon size={"20px"} />
         </Button>

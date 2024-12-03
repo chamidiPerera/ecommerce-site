@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Box, Typography, TextField, Button } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 
 const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -23,12 +24,14 @@ const signUpValidationSchema = Yup.object({
 
 const SignIn = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleSignIn = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser && existingUser.password === values.password) {
       localStorage.setItem("loggedInEmail", values.email);
       alert("Logged in successfully!");
+      navigate("/products");
     } else {
       alert("Invalid email or password.");
     }
@@ -48,6 +51,7 @@ const SignIn = () => {
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("loggedInEmail", values.email);
       alert("Signed up successfully!");
+      navigate("/signIn");
     }
   };
 

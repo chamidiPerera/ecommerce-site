@@ -51,22 +51,3 @@ h4 {
         font-size: 0.9rem;
     }
 }
-
-@media (max-width: 480px) {
-    .button-group {
-        width       : 30vw;
-        height      : 8vh;
-        border-width: 2px;
-    }
-
-    .button {
-        width       : 5vw;
-        height      : 8vh;
-        font-size   : 1rem;
-        border-width: 2px;
-    }
-
-    h4 {
-        font-size: 1rem;
-    }
-}

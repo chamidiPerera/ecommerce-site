@@ -62,12 +62,10 @@
 
 .stock-info.in-stock {
     color: #4caf50;
-    /* Green for available stock */
 }
 
 .stock-info.out-of-stock {
     color: #f44336;
-    /* Red for out of stock */
 }
 
 .product-description {

@@ -64,8 +64,8 @@
 
   .nav-btn {
     display: flex;
-    gap: 16px; /* Adjust the spacing if needed */
-    justify-content: center; /* Center the buttons horizontally */
-    flex-wrap: wrap; /* Ensure it wraps to the next line if space is tight */
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap; 
   }
 }
