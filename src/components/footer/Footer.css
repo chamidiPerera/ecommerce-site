@@ -1,7 +1,73 @@
 @import "../../Theme.css";
 
-.footer {
+.footer{
     width: 100vw;
     height: 50vh;
-    background-color: var(--color-black);
+    background-color: black;
+    padding: 50px;
+    display: flex;
+}
+
+.footer-left {
+    width: 50vw;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-right {
+    border-left: 0.5px solid white;
+    width: 50vw;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footer-left h1{
+    font-family: var(--font-family);
+    font-size: var(--font-size-xxl);
+    color: var(--color-white);
+    font-weight: bold;
+    margin: 0%;
+}
+
+.footer .footer-right h4{
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    color: var(--color-white);
+    font-weight: normal;
+    margin: 0%;
+}
+
+.footer .footer-left p{
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    color: var(--color-white);
+    font-weight: normal;
+    margin: 0%;
+    width: 40vw;
+    text-align: center;
+    line-height: var(--spacing-lg);
+    text-align: justify;
+}
+
+.social-media-icon-group{
+    width: 10vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-icons{
+    columns: var(--color-white);
+    border: 0.5px solid white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.payment-method-icon-group{
+    width: 20vw;
+    display: flex;
+    justify-content: space-between;
 }
