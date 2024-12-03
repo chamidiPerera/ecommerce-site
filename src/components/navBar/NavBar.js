@@ -70,11 +70,6 @@ export default function NavBar() {
     }
   };
 
-  const handleClearSearch = () => {
-    setSearchQuery("");
-    navigate("/products", { state: { searchQuery: "" } });
-  };
-
   return (
     <Box sx={{ flexGrow: 1, alignItems: "center" }}>
       <AppBar position="relative" className="nav-bar" elevation={0}>

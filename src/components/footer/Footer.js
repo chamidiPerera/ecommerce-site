@@ -43,10 +43,22 @@ function Footer() {
         </div>
         <h4>ACCEPT TO PAY</h4>
         <div className="payment-method-icon-group">
-          <img src={visa} className="payment-method-image" />
-          <img src={master} className="payment-method-image" />
-          <img src={diners} className="payment-method-image" />
-          <img src={amex} className="payment-method-image" />
+          <img src={visa} alt="visa card" className="payment-method-image" />
+          <img
+            src={master}
+            alt="master card"
+            className="payment-method-image"
+          />
+          <img
+            src={diners}
+            alt="diner's club card card"
+            className="payment-method-image"
+          />
+          <img
+            src={amex}
+            alt="american express card"
+            className="payment-method-image"
+          />
         </div>
       </div>
     </div>

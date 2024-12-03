@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
-import {
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Box,
-  Button,
-  TextField,
-} from "@mui/material";
+import { Typography, Box, Button, TextField } from "@mui/material";
 import { productList } from "../../data/ProductsList";
 import AddQuantityButtons from "../../components/increamentDecreamentButtons/AddQuantityButtons";
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { productList } from "../../data/ProductsList";
 import ProductCard from "../../components/productCard/ProductCard";
 import {
@@ -15,7 +15,6 @@ import { TextField } from "@mui/material";
 
 function Products() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [category, setCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -32,14 +31,6 @@ function Products() {
   const handleClearFilters = () => {
     setCategory("");
     setSearchQuery("");
-  };
-
-  const handleSearch = () => {
-    if (searchQuery.trim() !== "") {
-      navigate("/products", {
-        state: { searchQuery: searchQuery.toLowerCase() },
-      });
-    }
   };
 
   const filteredProducts = productList.filter((product) => {

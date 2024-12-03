@@ -22,8 +22,8 @@ function Home() {
         sx={{
           borderRadius: "20px",
           padding: "10px 20px",
-          backgroundColor: theme == "light" ? "#000000" : "#ffffff",
-          color: theme == "dark" ? "#000000" : "#ffffff",
+          backgroundColor: theme === "light" ? "#000000" : "#ffffff",
+          color: theme === "dark" ? "#000000" : "#ffffff",
           "&:hover": {
             backgroundColor: "#b98aac",
             color: "#000000",
