@@ -4,21 +4,37 @@
   display              : grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap                  : 50px;
-  padding               : var(--spacing-lg);
+  padding              : var(--spacing-lg);
 }
 
-#light .product-grid{
+#light .product-grid {
   background-color: var(--color-white);
 }
 
-#dark .product-grid{
+#dark .product-grid {
   background-color: var(--color-black);
 }
 
+.filter-section {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  gap             : 16px;
+  flex-wrap       : wrap;
+  padding         : 16px;
+  background-color: #f8f9fa;
+  border-radius   : 8px;
+}
 
-.product-item {
-  display        : flex;
-  justify-content: center;
-  align-items    : center;
-  overflow       : hidden;
+.product-search {
+  flex: 2;
+}
+
+.category-form {
+  flex: 1;
+}
+
+.filter-btn {
+  flex  : 0;
+  height: 36px;
 }

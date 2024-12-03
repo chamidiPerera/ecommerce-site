@@ -7,6 +7,7 @@ import {
   CardMedia,
   Box,
   Button,
+  TextField,
 } from "@mui/material";
 import { productList } from "../../data/ProductsList";
 import AddQuantityButtons from "../../components/increamentDecreamentButtons/AddQuantityButtons";
@@ -15,6 +16,9 @@ function Cart() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [totalCartAmount, setTotalCartAmount] = useState(0);
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [finalAmount, setFinalAmount] = useState(0);
 
   useEffect(() => {
     const loggedInEmail = localStorage.getItem("loggedInEmail");
@@ -30,7 +34,7 @@ function Cart() {
           return {
             ...cartItem,
             image: product?.image || "",
-            maxQuantity: product?.availability || 1, // Set max available quantity
+            maxQuantity: product?.availability || 1,
           };
         });
         setCartItems(userCart);
@@ -47,12 +51,17 @@ function Cart() {
     setTotalCartAmount(total);
   }, [cartItems]);
 
+  useEffect(() => {
+    const discountAmount = (totalCartAmount * discount) / 100;
+    const final = totalCartAmount - discountAmount;
+    setFinalAmount(final);
+  }, [totalCartAmount, discount]);
+
   const handleRemoveItem = (index) => {
     const updatedCart = [...cartItems];
-    updatedCart.splice(index, 1); // Remove the selected item
+    updatedCart.splice(index, 1);
     setCartItems(updatedCart);
 
-    // Update the localStorage for persistence
     if (loggedInUser) {
       const updatedUser = {
         ...loggedInUser,
@@ -64,16 +73,26 @@ function Cart() {
 
   const handleQuantityChange = (index, newQuantity) => {
     const updatedCart = [...cartItems];
-    updatedCart[index].quantity = newQuantity; // Update quantity
+    updatedCart[index].quantity = newQuantity;
     setCartItems(updatedCart);
 
-    // Update the localStorage for persistence
     if (loggedInUser) {
       const updatedUser = {
         ...loggedInUser,
         cart: updatedCart,
       };
       updateLocalStorageUser(updatedUser);
+    }
+  };
+
+  const handleApplyPromoCode = () => {
+    if (promoCode === "122948") {
+      setDiscount(20);
+    } else if (promoCode === "5763") {
+      setDiscount(5);
+    } else {
+      alert("Invalid promo code.");
+      setDiscount(0);
     }
   };
 
@@ -88,48 +107,89 @@ function Cart() {
 
   return (
     <div className="cart-page">
-      <h1>MY CART</h1>
+      <Typography variant="h4" gutterBottom>
+        My Cart
+      </Typography>
       {cartItems.length > 0 ? (
-        <Box>
-          {cartItems.map((item, index) => (
-            <Card key={index} className="cart-item">
-              <CardMedia
-                component="img"
-                image={item.image}
-                alt={item.name}
-                className="cart-item-image"
-              />
-              <CardContent className="cart-item-details">
-                <Typography variant="h6">{item.name}</Typography>
-                <Typography>Price: LKR {item.price}</Typography>
-                <Typography>
-                  Quantity:
+        <Box className="cart-page">
+          <Box className="cart-table">
+            <Box className="cart-header">
+              <Typography className="header-item">Product</Typography>
+              <Typography className="header-item">Price</Typography>
+              <Typography className="header-item">Quantity</Typography>
+              <Typography className="header-item">Total</Typography>
+              <Typography className="header-item">Actions</Typography>
+            </Box>
+            {cartItems.map((item, index) => (
+              <Box key={index} className="cart-row">
+                <Box className="cart-product">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="product-image-cart"
+                  />
+                  <Typography>{item.name}</Typography>
+                </Box>
+                <Typography className="cart-item-price">
+                  LKR {item.price}
+                </Typography>
+                <Box className="cart-item-quantity">
                   <AddQuantityButtons
                     maxQuantity={item.maxQuantity}
                     setQuantity={(newQuantity) =>
                       handleQuantityChange(index, newQuantity)
                     }
                   />
-                </Typography>
-                <Typography>
-                  Total: LKR{" "}
+                </Box>
+                <Typography className="cart-item-total">
+                  LKR{" "}
                   {(
                     parseInt(item.price.replace(/,/g, ""), 10) * item.quantity
                   ).toLocaleString()}
                 </Typography>
                 <Button
                   variant="contained"
-                  color="error"
+                  size="small"
+                  className="remove-button"
                   onClick={() => handleRemoveItem(index)}
                 >
-                  Remove Item
+                  Remove
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
-          <Typography variant="h5" className="cart-total">
-            Grand Total: LKR {totalCartAmount.toLocaleString()}
-          </Typography>
+              </Box>
+            ))}
+            <Box className="price-section">
+              <div className="promo-code">
+                <TextField
+                  label="Enter Promo Code"
+                  variant="outlined"
+                  size="small"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  onClick={handleApplyPromoCode}
+                  className="apply-btn"
+                >
+                  Apply
+                </Button>
+              </div>
+              <div className="total-section">
+                <Typography variant="body1">
+                  Subtotal: LKR {totalCartAmount.toLocaleString()}
+                </Typography>
+                <Typography variant="body1">
+                  Discount: {discount}% (LKR{" "}
+                  {((totalCartAmount * discount) / 100).toLocaleString()})
+                </Typography>
+                <Typography variant="h5">
+                  Total: LKR {finalAmount.toLocaleString()}
+                </Typography>
+              </div>
+            </Box>
+          </Box>
         </Box>
       ) : (
         <Typography>Your cart is empty.</Typography>
