@@ -1,0 +1,15 @@
+.button-group{
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-between;
+    width: 10vw;
+    height: 5vh;
+    text-align: center;
+    align-items: center;
+}
+
+.button{
+    border: 1px solid black;
+    width: 1vw;
+    height: 5vh;
+}

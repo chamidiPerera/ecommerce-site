@@ -1,0 +1,30 @@
+@import "../../Theme.css";
+
+.product-details{
+    width : 100vw;
+    margin    : 0 auto;
+    display: flex;
+    height: 100vh;
+}
+
+#light .product-details{
+    background-color: var(--color-white);
+}
+
+#dark .product-details{
+    background-color: var(--color-black);
+}
+
+.item-image{
+    width        : 100vw;
+    max-width    : 60vh;
+    object-fit   : cover;
+    margin       : 0 auto;
+    margin      : 20px
+  
+}
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+}

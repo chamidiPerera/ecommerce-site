@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { Grid, Box, Typography, TextField, Button } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import signUpImage from "../../assets/signUpImage.jpg";
 import "./SignIn.css";
 
 const users = JSON.parse(localStorage.getItem("users")) || [];
 
-// Validation schemas for Sign In and Sign Up
 const signInValidationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
@@ -25,7 +23,7 @@ const signUpValidationSchema = Yup.object({
 
 const SignIn = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  // Example for signing up or logging in
+
   const handleSignIn = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser && existingUser.password === values.password) {
@@ -36,7 +34,6 @@ const SignIn = () => {
     }
   };
 
-  // Example for sign up
   const handleSignUp = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser) {
@@ -48,17 +45,15 @@ const SignIn = () => {
         name: values.name,
       };
       users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users)); // Save updated users list
-      localStorage.setItem("loggedInEmail", values.email); // Set logged-in email
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInEmail", values.email);
       alert("Signed up successfully!");
     }
   };
 
   return (
     <Grid container className="container">
-      <Grid item xs={12} md={6} className="left">
-        <img src={signUpImage} alt="Sign Up" className="left-image" />
-      </Grid>
+      <Grid item xs={12} md={6} className="left"></Grid>
       <Grid item xs={12} md={6} className="right">
         <Box
           width="100%"
@@ -67,8 +62,12 @@ const SignIn = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Box width="80%">
-            <Typography variant="h4" gutterBottom>
+          <Box width={{ xs: "90%", sm: "80%" }}>
+            <Typography
+              variant="h4"
+              gutterBottom
+              textAlign={{ xs: "center", md: "left" }}
+            >
               {isSignUp ? "Sign Up" : "Sign In"}
             </Typography>
             <Formik

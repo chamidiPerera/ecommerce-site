@@ -1,0 +1,30 @@
+.cart-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .cart-item {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .cart-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .cart-item-details {
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: right;
+  }
+  
