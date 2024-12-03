@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,30 +8,29 @@ import Button from "@mui/material/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import "./NavBar.css";
-import ModeToggle from "../modeToggle/ModeToggle";
-import { useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, TextField } from "@mui/material";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import ModeToggle from "../modeToggle/ModeToggle";
+import "./NavBar.css";
 
 export default function NavBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [userMenuAnchorEl, setUserMenuAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
   const loggedInEmail = localStorage.getItem("loggedInEmail");
-  const [loggedInUser, setLoggedInUser] = React.useState(null);
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
-  const users = React.useMemo(
+  const users = useMemo(
     () => JSON.parse(localStorage.getItem("users")) || [],
     []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (loggedInEmail) {
       const user = users.find((user) => user.email === loggedInEmail);
       setLoggedInUser(user);
@@ -103,6 +103,7 @@ export default function NavBar() {
             >
               <MenuItem onClick={handleMenuClose}>HOME</MenuItem>
               <MenuItem onClick={handleMenuClose}>PRODUCTS</MenuItem>
+              <MenuItem onClick={handleMenuClose}>FAVORITES</MenuItem>
             </Menu>
           </Box>
 

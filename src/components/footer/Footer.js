@@ -1,5 +1,4 @@
 import React from "react";
-import "./Footer.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { IconButton } from "@mui/material";
@@ -7,6 +6,7 @@ import visa from "../../assets/paymentMethodImages/visa.png";
 import master from "../../assets/paymentMethodImages/master.png";
 import diners from "../../assets/paymentMethodImages/diners.png";
 import amex from "../../assets/paymentMethodImages/amex.png";
+import "./Footer.css";
 
 function Footer() {
   return (

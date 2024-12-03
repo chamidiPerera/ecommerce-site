@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./AddQuantityButtons.css";
 import { Button, ButtonGroup } from "@mui/material";
+import "./AddQuantityButtons.css";
 
 function AddQuantityButtons({ maxQuantity, setQuantity }) {
   const [count, setCount] = useState(1);

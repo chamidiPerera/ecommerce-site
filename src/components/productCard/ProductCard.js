@@ -10,22 +10,23 @@ function ProductCard({ image, name, price, availability, product, id }) {
   const [isFavorite, setIsFavorite] = useState(
     localStorage.getItem(`favorite-${product.id}`) ? true : false
   );
-
   const toggleFavorite = () => {
-    let userFavorites = JSON.parse(localStorage.getItem("user")) || {
-      favorites: [],
-    };
+    const user = JSON.parse(localStorage.getItem("user")) || { favorites: [] };
 
     if (isFavorite) {
-      userFavorites.favorites = userFavorites.favorites.filter(
+      const updatedFavorites = user.favorites.filter(
         (fav) => fav.id !== product.id
       );
+      user.favorites = updatedFavorites;
+      localStorage.setItem("user", JSON.stringify(user));
+      setIsFavorite(false);
     } else {
-      userFavorites.favorites.push(product);
+      if (!user.favorites.find((fav) => fav.id === product.id)) {
+        user.favorites.push(product);
+      }
+      localStorage.setItem("user", JSON.stringify(user));
+      setIsFavorite(true);
     }
-
-    localStorage.setItem("user", JSON.stringify(userFavorites));
-    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -40,7 +41,7 @@ function ProductCard({ image, name, price, availability, product, id }) {
         </div>
         <div className="icon" onClick={toggleFavorite}>
           {isFavorite ? (
-            <FavoriteIcon style={{ color: "white" }} />
+            <FavoriteIcon style={{ color: "red" }} />
           ) : (
             <FavoriteBorderIcon />
           )}

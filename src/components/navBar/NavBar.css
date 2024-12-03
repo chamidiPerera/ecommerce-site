@@ -45,15 +45,15 @@
 }
 
 .search .MuiOutlinedInput-root input {
-  color: var(--color-black); /* Set text color to black for light mode */
+  color: var(--color-black); 
 }
 
 #light .search .MuiOutlinedInput-root input {
-  color: var(--color-black); /* Ensure text is black in light mode */
+  color: var(--color-black); 
 }
 
 #dark .search .MuiOutlinedInput-root input {
-  color: var(--color-white); /* Ensure text is white in dark mode */
+  color: var(--color-white); 
 }
 
 .search .MuiOutlinedInput-root:hover {

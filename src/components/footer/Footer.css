@@ -2,9 +2,9 @@
 
 .footer{
     width: 100vw;
-    height: 50vh;
+    height: 45vh;
     background-color: black;
-    padding: 50px;
+    padding: 20px;
     display: flex;
 }
 
