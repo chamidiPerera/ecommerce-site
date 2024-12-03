@@ -23,6 +23,7 @@ export const productList = [
     colors: ["White", "Red", "Black"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 2,
@@ -37,6 +38,7 @@ export const productList = [
     colors: ["Blue", "Black"],
     material: "98% Cotton, 2% Elastane",
     careInstructions: "Wash inside out with similar colors.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 3,
@@ -51,6 +53,7 @@ export const productList = [
     colors: ["Black", "Gray"],
     material: "Polyester blend",
     careInstructions: "Dry clean only.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 4,
@@ -65,6 +68,7 @@ export const productList = [
     colors: ["Beige", "White"],
     material: "Wool blend",
     careInstructions: "Hand wash in cold water.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 5,
@@ -79,6 +83,7 @@ export const productList = [
     colors: ["Red", "Navy Blue"],
     material: "Silk blend",
     careInstructions: "Dry clean only.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 6,
@@ -93,6 +98,7 @@ export const productList = [
     colors: ["Yellow"],
     material: "Cotton",
     careInstructions: "Machine wash cold.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 7,
@@ -107,6 +113,7 @@ export const productList = [
     colors: ["Cream", "Pink"],
     material: "Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 8,
@@ -121,6 +128,7 @@ export const productList = [
     colors: ["Blue", "Green"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 9,
@@ -135,6 +143,7 @@ export const productList = [
     colors: ["White", "Pink"],
     material: "Cotton blend",
     careInstructions: "Hand wash for longevity.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
   {
     id: 10,
@@ -149,5 +158,6 @@ export const productList = [
     colors: ["Yellow", "Green"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
+    thumbnailImages:[image1,image10,image2,image1],
   },
 ];
