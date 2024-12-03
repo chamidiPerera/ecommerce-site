@@ -70,9 +70,9 @@ function Products() {
     sx={{
       backgroundColor: "rgba(255, 255, 255, 0.1)",
       borderRadius: "8px",
-      height: "40px", // Consistent height
+      height: "40px",
       "& .MuiOutlinedInput-root": {
-        height: "40px", // Match the container height
+        height: "40px",
         backgroundColor: "rgba(255, 255, 255, 0.1)",
       },
       "& input": {
@@ -137,6 +137,7 @@ function Products() {
               price={product.price}
               description={product.description}
               availability={product.availability}
+              product={product}
             />
           </div>
         ))}
