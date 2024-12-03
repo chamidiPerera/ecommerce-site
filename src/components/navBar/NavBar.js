@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import "./NavBar.css";
@@ -58,7 +59,7 @@ export default function NavBar() {
     localStorage.removeItem("loggedInEmail");
     setLoggedInUser(null);
     setUserMenuAnchorEl(null);
-    navigate("/"); // Redirect to the home page
+    navigate("/");
   };
 
   const handleSearch = () => {
@@ -84,6 +85,7 @@ export default function NavBar() {
             sx={{ flexGrow: 1, paddingLeft: 5 }}
             className="logo"
             textAlign={"left"}
+            onClick={() => navigate("./")}
           >
             URBAN CULT
           </Typography>
@@ -108,103 +110,127 @@ export default function NavBar() {
               <MenuItem onClick={handleMenuClose}>PRODUCTS</MenuItem>
             </Menu>
           </Box>
-          <div className="search">
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              fullWidth
-              label="Search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSearch}
-              sx={{ marginLeft: 1 }}
-            >
-              Search
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={handleClearSearch}
-              sx={{ marginLeft: 1 }}
-            >
-              Clear
-            </Button>
-          </div>
+
           <Box
             sx={{
-              flexGrow: 0.05,
-              display: {
-                xs: "none",
-                md: "flex",
-                justifyContent: "space-between",
-              },
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 2,
+              flexWrap: "wrap",
             }}
           >
-            <Button
-              className="button"
-              variant="text"
-              sx={{
-                color: theme === "dark" ? "#ffffff" : "#000000",
-                fontSize: 14,
-              }}
-              onClick={() => navigate("/")}
-            >
-              HOME
-            </Button>
-            <Button
-              variant="text"
-              sx={{
-                color: theme === "dark" ? "#ffffff" : "#000000",
-                fontSize: 14,
-              }}
-              onClick={() => navigate("/products")}
-            >
-              PRODUCTS
-            </Button>
-          </Box>
-
-          <ModeToggle />
-          <Button
-            variant="text"
-            sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
-            onClick={() => navigate("/cart")}
-          >
-            <ShoppingCartIcon size={"20px"} />
-          </Button>
-
-          {userName ? (
-            <>
+            <div className="search">
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                color="gray"
+                label="Search"
+                size="small"
+                value={searchQuery}
+                onChange={(text) => setSearchQuery(text.target.value)}
+                sx={{
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "8px",
+                  height: "36px",
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  },
+                  "& input": {
+                    paddingLeft: "12px",
+                  },
+                }}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                onClick={handleSearch}
+                disabled={!searchQuery}
+                sx={{
+                  backgroundColor: "white",
+                  color: "black",
+                  height: "36px",
+                  minWidth: "36px",
+                  transition: "background-color 0.5s ease",
+                  "&:disabled": {
+                    backgroundColor: "#dcdcdc",
+                  },
+                  "&:not(:disabled)": {
+                    "&:hover": {
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    },
+                  },
+                }}
+              >
+                <SearchIcon />
+              </Button>
+            </div>
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
               <Button
                 variant="text"
                 sx={{
                   color: theme === "dark" ? "#ffffff" : "#000000",
                   fontSize: 14,
                 }}
-                onClick={handleUserMenuOpen}
+                onClick={() => navigate("/")}
               >
-                Hi, {userName}
+                HOME
               </Button>
-              <Menu
-                anchorEl={userMenuAnchorEl}
-                open={Boolean(userMenuAnchorEl)}
-                onClose={handleUserMenuClose}
+              <Button
+                variant="text"
+                sx={{
+                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  fontSize: 14,
+                }}
+                onClick={() => navigate("/products")}
               >
-                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-              </Menu>
-            </>
-          ) : (
+                PRODUCTS
+              </Button>
+            </Box>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <ModeToggle />
             <Button
               variant="text"
               sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
-              onClick={() => navigate("/signIn")}
+              onClick={() => navigate("/cart")}
             >
-              <AccountCircleIcon size={"20px"} />
+              <ShoppingCartIcon size={"20px"} />
             </Button>
-          )}
+
+            {userName ? (
+              <>
+                <Button
+                  variant="text"
+                  sx={{
+                    color: theme === "dark" ? "#ffffff" : "#000000",
+                    fontSize: 14,
+                  }}
+                  onClick={handleUserMenuOpen}
+                >
+                  Hi, {userName}
+                </Button>
+                <Menu
+                  anchorEl={userMenuAnchorEl}
+                  open={Boolean(userMenuAnchorEl)}
+                  onClose={handleUserMenuClose}
+                >
+                  <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <Button
+                variant="text"
+                sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
+                onClick={() => navigate("/signIn")}
+              >
+                <AccountCircleIcon size={"20px"} />
+              </Button>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

@@ -10,8 +10,10 @@
     background-color: var(--color-black);
     
     display: flex;
+    flex-direction: column;
     align-items: center; 
-    justify-content: center; 
+    justify-content: space-evenly; 
+
 }
 
 #dark .home{
@@ -71,6 +73,11 @@ img {
     height: auto; 
     display: flex;
     margin: 0 auto; 
+}
+
+.explore-button{
+    bottom: 20vh;
+    border-radius: 50%;
 }
 
 @media (max-width: 768px) {
