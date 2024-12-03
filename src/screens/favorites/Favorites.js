@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 
-
 function Favorites() {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
+    const user = JSON.parse(localStorage.getItem("user")) || { favorites: [] };
+    setFavorites(user.favorites);
   }, []);
 
   return (

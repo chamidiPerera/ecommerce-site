@@ -101,9 +101,11 @@ function ProductDetails() {
       <div className="right-side">
         <h2 className="product-name">{item.name}</h2>
         <h3 className="price">LKR {item.price}</h3>
-        
-        <h4 
-          className={`stock-info ${item.availability === 0 ? 'out-of-stock' : 'in-stock'}`}
+
+        <h4
+          className={`stock-info ${
+            item.availability === 0 ? "out-of-stock" : "in-stock"
+          }`}
         >
           {item.availability} in stock
         </h4>
@@ -112,14 +114,15 @@ function ProductDetails() {
           <Typography variant="body1">{item.description}</Typography>
         </div>
 
-        {/* Size Selection Box */}
         <div className="size-selection">
           <h4>Select Size:</h4>
           <div className="size-options">
             {item.sizes.map((size, index) => (
               <div
                 key={index}
-                className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                className={`size-option ${
+                  selectedSize === size ? "selected" : ""
+                }`}
                 onClick={() => handleSizeClick(size)}
               >
                 {size}
@@ -155,9 +158,9 @@ function ProductDetails() {
           maxQuantity={item.availability}
           setQuantity={setQuantity}
         />
-        
+
         <h3 className="total-price">Total: LKR {totalAmount}</h3>
-        
+
         <Button className="add-to-cart" onClick={handleAddToCart}>
           Add to Cart
         </Button>

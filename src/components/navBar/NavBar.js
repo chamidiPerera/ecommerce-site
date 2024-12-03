@@ -188,6 +188,16 @@ export default function NavBar() {
               >
                 PRODUCTS
               </Button>
+              <Button
+                variant="text"
+                sx={{
+                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  fontSize: 14,
+                }}
+                onClick={() => navigate("/favorite")}
+              >
+                FAVORITES
+              </Button>
             </Box>
           </Box>
 

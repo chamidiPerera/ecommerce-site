@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ProductCard.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard({ image, name, price, availability, product, id }) {
@@ -11,15 +12,19 @@ function ProductCard({ image, name, price, availability, product, id }) {
   );
 
   const toggleFavorite = () => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let userFavorites = JSON.parse(localStorage.getItem("user")) || {
+      favorites: [],
+    };
 
     if (isFavorite) {
-      favorites = favorites.filter((fav) => fav.id !== product.id);
+      userFavorites.favorites = userFavorites.favorites.filter(
+        (fav) => fav.id !== product.id
+      );
     } else {
-      favorites.push(product);
+      userFavorites.favorites.push(product);
     }
 
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem("user", JSON.stringify(userFavorites));
     setIsFavorite(!isFavorite);
   };
 
@@ -34,7 +39,11 @@ function ProductCard({ image, name, price, availability, product, id }) {
           <VisibilityIcon />
         </div>
         <div className="icon" onClick={toggleFavorite}>
-          <FavoriteBorderIcon />
+          {isFavorite ? (
+            <FavoriteIcon style={{ color: "white" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </div>
       </div>
       <h3>{name}</h3>
