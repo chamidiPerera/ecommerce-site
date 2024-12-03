@@ -6,22 +6,20 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, TextField } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import ModeToggle from "../modeToggle/ModeToggle";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [userMenuAnchorEl, setUserMenuAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
   const loggedInEmail = localStorage.getItem("loggedInEmail");
-  const [loggedInUser, setLoggedInUser] = React.useState(null);
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
@@ -60,14 +58,6 @@ export default function NavBar() {
     setLoggedInUser(null);
     setUserMenuAnchorEl(null);
     navigate("/");
-  };
-
-  const handleSearch = () => {
-    if (searchQuery.trim() !== "") {
-      navigate("/products", {
-        state: { searchQuery: searchQuery.toLowerCase() },
-      });
-    }
   };
 
   return (
