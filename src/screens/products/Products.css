@@ -94,3 +94,9 @@
   margin: 0%;
   margin: var(--spacing-md);
 }
+
+@media (max-width: 768px) {
+  .filter-btn{
+    margin-left: 80px !important;
+  }
+}
