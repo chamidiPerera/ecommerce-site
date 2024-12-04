@@ -1,46 +1,167 @@
 @import "../../Theme.css";
 
-.container {
-  height: 100vh;
+.sign-in {
+  height: 90vh;
   width: 100vw;
+  display: flex;
 }
 
-#light .container{
-  background-color: var(--color-white);
-}
-
-#dark .container{
-  background-color: var(--color-black);
-}
-
-.left {
+.sign-in-left {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 45vw;
+  position: relative;
+  overflow: hidden;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+/* Add opacity to the background image and blur effect */
+.sign-in-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   background-image: url("../../assets/signUpImage.jpg");
   background-size: cover;
-  background-position: center;
-  height: 100%;
+  background-position: right;
+  filter: blur(4px);
 }
 
-.right {
+/* Content wrapper with white text and highlighted effect */
+.sign-in-left .sign-in-left-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.benefit-list{
+  justify-content: left;
+}
+
+.list-pints{
+color: var(--color-black);
+text-align: left;
+font-size: var(--font-size-lg);
+font-family: var(--font-family);
+margin-top: 20px;
+}
+
+.sign-in-left .sign-in-left-content h2{
+  font-family: var(--font-family);
+  font-size: var(--font-size-xxl);
+  color: var(--color-black);
+  font-weight: bold;
+  margin: 0%;
+  width: 100%;
+}
+
+/* Right section */
+.sign-in-right {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  position: relative;
+  width: 55vw;
+  border-radius: 2%;
 }
 
+.sign-in-right h1{
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
+  font-weight: normal;
+  margin-bottom: var(--spacing-md);
+  width: 75%;
+}
+
+.sign-in-right h2{
+  font-family: var(--font-family);
+  font-size: var(--font-size-xl);
+  color: var(--color-black);
+  font-weight: bold;
+  margin: 0%;
+  width: 75%;
+  margin-bottom: var(--spacing-xl);
+
+}
+
+/* Form Heading */
+.heading {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.input-field {
+  border-radius: 25px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+.submit-btn {
+  border-radius: 25px;
+  padding: 14px;
+  margin-top: 15px;
+  background-color: #000000;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:hover {
+  background-color: #000000cf;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Toggle Button */
+.toggle-btn {
+  font-size: 1rem;
+  text-transform: none;
+  color: #000000;
+  font-weight: bold;
+
+}
+
+/* Media Queries for Mobile */
 @media (max-width: 960px) {
   .container {
     flex-direction: column;
   }
 
   .left {
-    display: none; 
+    display: none;
   }
 
   .right {
     width: 100%;
     padding: 20px;
   }
+}
+
+.sign-in-form{
+  width: 80%;
 }

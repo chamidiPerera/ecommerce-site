@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { Grid, Box, Typography, TextField, Button } from "@mui/material";
+import React, { useCallback, useContext, useState } from "react";
+import { Box, Typography, TextField, Button } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+import { ThemeContext } from "@emotion/react";
 
+// Sample user data
 const users = JSON.parse(localStorage.getItem("users")) || [];
 
 const signInValidationSchema = Yup.object({
@@ -24,7 +27,8 @@ const signUpValidationSchema = Yup.object({
 
 const SignIn = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const handleSignIn = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
@@ -56,24 +60,50 @@ const SignIn = () => {
   };
 
   return (
-    <Grid container className="container">
-      <Grid item xs={12} md={6} className="left"></Grid>
-      <Grid item xs={12} md={6} className="right">
+    <div className="sign-in">
+      <div className="sign-in-left">
+        <div className="sign-in-left-content">
+          <h2>Sign up to URBAN CULT Community and get exclusive benefits!</h2>
+          <ul className="benefit-list">
+            <li className="list-pints"> FREE Special Gift to a new member</li>
+            <li className="list-pints">
+              {" "}
+              Get 2x URBAN CULT Points to purchase items
+            </li>
+            <li className="list-pints">
+              Get special voucher code every month{" "}
+            </li>
+            <li className="list-pints"> Claim Voucher Disc. Up To 50%</li>
+          </ul>
+        </div>
+      </div>
+      <div className="sign-in-right">
         <Box
           width="100%"
           height="100%"
           display="flex"
           justifyContent="center"
           alignItems="center"
+          sx={{
+            backgroundImage:
+              "linear-gradient(to left, #b997bb, #e0bdd2,#ffffff)",
+          }}
         >
-          <Box width={{ xs: "90%", sm: "80%" }}>
-            <Typography
-              variant="h4"
-              gutterBottom
-              textAlign={{ xs: "center", md: "left" }}
-            >
-              {isSignUp ? "Sign Up" : "Sign In"}
-            </Typography>
+          <Box
+            width="60%"
+            height="80%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              backgroundColor: "rgba(255,255,255,0.5)",
+              borderRadius: 5,
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h1>URBAN CULT</h1>
+            <h2>{isSignUp ? "Create an Account" : "WELCOME BACK"}</h2>
             <Formik
               initialValues={
                 isSignUp
@@ -88,32 +118,34 @@ const SignIn = () => {
               }
             >
               {({ errors, touched }) => (
-                <Form>
+                <Form className="sign-in-form">
                   {isSignUp && (
-                    <Box mb={2}>
+                    <Box mb={3}>
                       <Field
                         as={TextField}
                         name="name"
-                        label="Name"
+                        label="Full Name"
                         variant="outlined"
                         fullWidth
                         error={touched.name && Boolean(errors.name)}
                         helperText={touched.name && errors.name}
+                        className="input-field"
                       />
                     </Box>
                   )}
-                  <Box mb={2}>
+                  <Box mb={3}>
                     <Field
                       as={TextField}
                       name="email"
-                      label="Email"
+                      label="Email Address"
                       variant="outlined"
                       fullWidth
                       error={touched.email && Boolean(errors.email)}
                       helperText={touched.email && errors.email}
+                      className="input-field"
                     />
                   </Box>
-                  <Box mb={2}>
+                  <Box mb={3}>
                     <Field
                       as={TextField}
                       name="password"
@@ -123,20 +155,21 @@ const SignIn = () => {
                       fullWidth
                       error={touched.password && Boolean(errors.password)}
                       helperText={touched.password && errors.password}
+                      className="input-field"
                     />
                   </Box>
                   <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
                     fullWidth
+                    className="submit-btn"
                   >
                     {isSignUp ? "Sign Up" : "Sign In"}
                   </Button>
                 </Form>
               )}
             </Formik>
-            <Box mt={2} textAlign="center">
+            <Box mt={3} textAlign="center">
               {isSignUp ? (
                 <Typography>
                   Already have an account?{" "}
@@ -144,8 +177,9 @@ const SignIn = () => {
                     onClick={() => setIsSignUp(false)}
                     color="primary"
                     variant="text"
+                    className="toggle-btn"
                   >
-                    Sign In
+                    SING IN
                   </Button>
                 </Typography>
               ) : (
@@ -155,16 +189,17 @@ const SignIn = () => {
                     onClick={() => setIsSignUp(true)}
                     color="primary"
                     variant="text"
+                    className="toggle-btn"
                   >
-                    Sign Up
+                    SIGN UP
                   </Button>
                 </Typography>
               )}
             </Box>
           </Box>
         </Box>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 
