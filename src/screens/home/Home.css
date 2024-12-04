@@ -67,14 +67,6 @@
     border-top: 1px solid var(--color-black);
 }
 
-
-img {
-    max-width: 20%;
-    height: auto; 
-    display: flex;
-    margin: 0 auto; 
-}
-
 .explore-button{
     bottom: 20vh;
     border-radius: 50%;

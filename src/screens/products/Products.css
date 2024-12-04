@@ -1,5 +1,11 @@
 @import '../../../src/Theme.css';
 
+.products-page{
+width: 100%;
+height: 100vh;
+}
+
+
 .product-grid {
   display              : grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -7,11 +13,11 @@
   padding              : var(--spacing-lg);
 }
 
-#light .product-grid {
+#light .products-page {
   background-color: var(--color-white);
 }
 
-#dark .product-grid {
+#dark .products-page {
   background-color: var(--color-black);
 }
 
@@ -37,4 +43,54 @@
 .filter-btn {
   flex  : 0;
   height: 36px;
+}
+
+.products-page-header{
+  background-image: url("../../assets/productImages/productsPageImage.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 35vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: space-evenly; 
+}
+
+.products-page-header-text-area{
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: space-around; 
+  text-align: center;  
+}
+
+.products-page-header-text-area h1 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xxl);
+  color: var(--color-black);
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+}
+
+.products-page-header-text-area h4 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
+  font-weight:bold;
+  align-self: center;
+  width: 70%;   
+}
+
+.products-page-header-text-area h6 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-black);
+  font-weight:normal;
+  align-self: center;
+  width: 50%;   
+  margin: 0%;
+  margin: var(--spacing-md);
 }

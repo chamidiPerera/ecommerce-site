@@ -46,6 +46,19 @@ function Products() {
 
   return (
     <div>
+      <div className="products-page-header">
+        <div className="products-page-header-text-area">
+          <h1>SEASONAL OFFERS</h1>
+          <h4>
+            This holiday season, enjoy incredible savings with our exclusive
+            Christmas discounts!
+          </h4>
+          <h6>
+            Use promo code 1234 to unlock 20% off your purchase. Use promo code
+            5678 to enjoy 5% off your order.
+          </h6>
+        </div>
+      </div>
       <div className="filter-section">
         <TextField
           id="outlined-basic"
