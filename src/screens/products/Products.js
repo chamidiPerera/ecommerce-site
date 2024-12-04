@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { productList } from "../../data/ProductsList";
-import ProductCard from "../../components/productCard/ProductCard";
-import { Tabs, Tab, Button, Menu, MenuItem, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import "./Products.css";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Tabs, Tab, Button, Menu, MenuItem, TextField } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { productList } from '../../data/ProductsList';
+import ProductCard from '../../components/productCard/ProductCard';
+import './Products.css';
 
 function Products() {
   const location = useLocation();
-  const [category, setCategory] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortOrder, setSortOrder] = useState(""); // Sorting criteria
-  const [anchorEl, setAnchorEl] = useState(null); // Anchor for filter menu
-  const [selectedFilter, setSelectedFilter] = useState("Filter"); // Selected filter state
+  const [category, setCategory] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState('Filter');
 
   const categories = [
-    "All Categories",
-    "Tops",
-    "Bottoms",
-    "Outerwear",
-    "Dresses",
+    'All Categories',
+    'Tops',
+    'Bottoms',
+    'Outerwear',
+    'Dresses',
   ];
 
   useEffect(() => {
@@ -30,13 +29,13 @@ function Products() {
   }, [location.state]);
 
   const handleCategoryChange = (_, newValue) => {
-    setCategory(newValue === 0 ? "" : categories[newValue]);
+    setCategory(newValue === 0 ? '' : categories[newValue]);
   };
 
   const handleSortOrderChange = (order, label) => {
     setSortOrder(order);
-    setSelectedFilter(label); // Update selected filter text
-    setAnchorEl(null); // Close the menu
+    setSelectedFilter(label);
+    setAnchorEl(null);
   };
 
   const handleFilterMenuOpen = (event) => {
@@ -59,9 +58,9 @@ function Products() {
       return matchesCategory && matchesSearch;
     })
     .sort((a, b) => {
-      if (sortOrder === "priceHighToLow") return b.price - a.price;
-      if (sortOrder === "priceLowToHigh") return a.price - b.price;
-      return 0; // Default sorting
+      if (sortOrder === 'priceHighToLow') return b.price - a.price;
+      if (sortOrder === 'priceLowToHigh') return a.price - b.price;
+      return 0;
     });
 
   return (
@@ -87,13 +86,13 @@ function Products() {
           variant="scrollable"
           scrollButtons="auto"
           sx={{
-            width: "100%",
+            width: '100%',
             maxWidth: 600,
-            "& .MuiTabs-indicator": {
-              backgroundColor: "black",
+            '& .MuiTabs-indicator': {
+              backgroundColor: 'black',
             },
-            "& .Mui-selected": {
-              color: "#000000",
+            '& .Mui-selected': {
+              color: '#000000',
             },
           }}
         >
@@ -107,22 +106,22 @@ function Products() {
           startIcon={<FilterListIcon />}
           onClick={handleFilterMenuOpen}
           sx={{
-            height: "36px",
-            padding: "0 12px",
-            minWidth: "150px",
-            borderColor: "black", // Border color set to black
-            color: "black", // Text color set to black
-            fontSize: "14px", // Slightly smaller font size
-            fontWeight: "600", // Make text bold
-            borderRadius: "8px", // Modern rounded corners
-            textTransform: "capitalize", // Disable uppercase text
-            "&:hover": {
-              borderColor: "black", // Keep border black on hover
-              backgroundColor: "rgba(0, 0, 0, 0.05)", // Subtle hover effect
+            height: '36px',
+            padding: '0 12px',
+            minWidth: '150px',
+            borderColor: 'black',
+            color: 'black',
+            fontSize: '14px',
+            fontWeight: '600',
+            borderRadius: '8px',
+            textTransform: 'capitalize',
+            '&:hover': {
+              borderColor: 'black',
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
             },
           }}
         >
-          {selectedFilter} {/* Show the selected filter option */}
+          {selectedFilter}
         </Button>
 
         <Menu
@@ -132,14 +131,14 @@ function Products() {
         >
           <MenuItem
             onClick={() =>
-              handleSortOrderChange("priceHighToLow", "Price: High to Low")
+              handleSortOrderChange('priceHighToLow', 'Price: High to Low')
             }
           >
             Price: High to Low
           </MenuItem>
           <MenuItem
             onClick={() =>
-              handleSortOrderChange("priceLowToHigh", "Price: Low to High")
+              handleSortOrderChange('priceLowToHigh', 'Price: Low to High')
             }
           >
             Price: Low to High

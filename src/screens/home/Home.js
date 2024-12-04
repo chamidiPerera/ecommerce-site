@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import "./Home.css";
-import { Button } from "@mui/material";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import './Home.css';
 
 function Home() {
   const { theme } = useContext(ThemeContext);
@@ -20,16 +20,16 @@ function Home() {
         className="explore-button"
         variant="contained"
         sx={{
-          borderRadius: "20px",
-          padding: "10px 20px",
-          backgroundColor: theme === "light" ? "#000000" : "#ffffff",
-          color: theme === "dark" ? "#000000" : "#ffffff",
-          "&:hover": {
-            backgroundColor: "#b98aac",
-            color: "#000000",
+          borderRadius: '20px',
+          padding: '10px 20px',
+          backgroundColor: theme === 'light' ? '#000000' : '#ffffff',
+          color: theme === 'dark' ? '#000000' : '#ffffff',
+          '&:hover': {
+            backgroundColor: '#b98aac',
+            color: '#000000',
           },
         }}
-        onClick={() => navigate("/products")}
+        onClick={() => navigate('/products')}
       >
         Explore shop
       </Button>

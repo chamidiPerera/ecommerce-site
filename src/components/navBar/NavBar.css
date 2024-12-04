@@ -1,27 +1,29 @@
+@import '../../Theme.css';
+
 .nav-bar {
   background-color: var(--color-white);
-  padding         : var(--spacing-xs);
-  border-bottom   : 0.3px solid black;
+  padding: var(--spacing-xs);
+  border-bottom: 0.3px solid black;
   height: 10vh;
 }
 
 #dark .nav-bar {
   background-color: var(--color-black);
-  border-bottom   : 0.3px solid gray;
+  border-bottom: 0.3px solid gray;
 }
 
 #light .nav-bar {
   background-color: var(--color-white);
-  border-bottom   : 0.3px solid black;
+  border-bottom: 0.3px solid black;
 }
 
 .logo {
   font-family: var(--font-family);
-  font-size  : var(--font-size-lg);
-  color      : var(--color-black);
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
   font-weight: normal;
-  margin     : 0%;
-  cursor     : pointer;
+  margin: 0%;
+  cursor: pointer;
 }
 
 #dark .logo {
@@ -33,9 +35,9 @@
 }
 
 .nav-btn {
-  display    : flex;
+  display: flex;
   align-items: center;
-  gap        : 10px;
+  gap: 10px;
 }
 
 @media (max-width: 768px) {
@@ -65,20 +67,19 @@
 
   .nav-btn {
     display: flex;
-    gap: 16px; /* Adjust the spacing if needed */
-    justify-content: center; /* Center the buttons horizontally */
-    flex-wrap: wrap; /* Ensure it wraps to the next line if space is tight */
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
-/* Existing CSS remains unchanged */
 @media (max-width: 768px) {
   .logo {
-    display: none; /* Hide logo on mobile */
+    display: none;
   }
 
   .menu-icon {
-    display: block; /* Show menu icon */
+    display: block;
   }
 
   .mobile-menu {

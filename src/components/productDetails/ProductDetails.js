@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
-import AddQuantityButtons from "../increamentDecreamentButtons/AddQuantityButtons";
-import "./ProductDetails.css";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
+import toast from 'react-hot-toast';
+import AddQuantityButtons from '../increamentDecreamentButtons/AddQuantityButtons';
+import './ProductDetails.css';
 
 function ProductDetails() {
-  const location = useLocation();
-  const item = location.state;
   const [quantity, setQuantity] = useState(1);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [mainImage, setMainImage] = useState(item.image);
   const [selectedSize, setSelectedSize] = useState(null);
+  const location = useLocation();
+  const item = location.state;
 
   const totalAmount = item.price * quantity;
 
   useEffect(() => {
-    const loggedInEmail = localStorage.getItem("loggedInEmail");
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInEmail = localStorage.getItem('loggedInEmail');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
 
     if (loggedInEmail) {
       const user = users.find((user) => user.email === loggedInEmail);
@@ -27,12 +27,12 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     if (!loggedInUser) {
-      toast.error("Please login to add items to the cart");
+      toast.error('Please login to add items to the cart');
       return;
     }
 
     if (!selectedSize) {
-      toast.error("Please select a size");
+      toast.error('Please select a size');
       return;
     }
 
@@ -40,7 +40,7 @@ function ProductDetails() {
     const cart = updatedUser.cart || [];
 
     const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id && cartItem.size === selectedSize
+      (cartItem) => cartItem.id === item.id && cartItem.size === selectedSize,
     );
 
     if (existingItemIndex > -1) {
@@ -59,17 +59,17 @@ function ProductDetails() {
 
     updatedUser.cart = cart;
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem('users')) || [];
     const userIndex = users.findIndex(
-      (user) => user.email === loggedInUser.email
+      (user) => user.email === loggedInUser.email,
     );
 
     if (userIndex > -1) {
       users[userIndex] = updatedUser;
-      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem('users', JSON.stringify(users));
     }
 
-    toast.success("Item added to cart");
+    toast.success('Item added to cart');
   };
 
   const handleThumbnailHover = (imageUrl) => {
@@ -103,7 +103,7 @@ function ProductDetails() {
 
         <h4
           className={`stock-info ${
-            item.availability === 0 ? "out-of-stock" : "in-stock"
+            item.availability === 0 ? 'out-of-stock' : 'in-stock'
           }`}
         >
           {item.availability} in stock
@@ -120,7 +120,7 @@ function ProductDetails() {
               <div
                 key={index}
                 className={`size-option ${
-                  selectedSize === size ? "selected" : ""
+                  selectedSize === size ? 'selected' : ''
                 }`}
                 onClick={() => handleSizeClick(size)}
               >

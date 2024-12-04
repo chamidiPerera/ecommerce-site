@@ -1,36 +1,36 @@
-import React, { useState, useEffect, useMemo, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, TextField } from "@mui/material";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import ModeToggle from "../modeToggle/ModeToggle";
-import SearchIcon from "@mui/icons-material/Search";
-import toast from "react-hot-toast";
+import React, { useState, useEffect, useMemo, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton, TextField, Snackbar, Alert } from '@mui/material'; // Import Snackbar and Alert
+import { ThemeContext } from '../../contexts/ThemeContext';
+import ModeToggle from '../modeToggle/ModeToggle';
+import SearchIcon from '@mui/icons-material/Search';
 
-import "./NavBar.css";
+import './NavBar.css';
+import toast from 'react-hot-toast';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const loggedInEmail = localStorage.getItem("loggedInEmail");
+  const loggedInEmail = localStorage.getItem('loggedInEmail');
   const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
   const users = useMemo(
-    () => JSON.parse(localStorage.getItem("users")) || [],
-    []
+    () => JSON.parse(localStorage.getItem('users')) || [],
+    [],
   );
 
   useEffect(() => {
@@ -59,15 +59,15 @@ export default function NavBar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedInEmail");
+    localStorage.removeItem('loggedInEmail');
     setLoggedInUser(null);
     setUserMenuAnchorEl(null);
-    navigate("/");
+    navigate('/');
   };
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      navigate("/products", { state: { searchQuery } });
+      navigate('/products', { state: { searchQuery } });
       setIsSearchOpen(false);
     }
   };
@@ -83,29 +83,29 @@ export default function NavBar() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleSearch();
     }
   };
 
   const handleCartClick = () => {
     if (loggedInUser) {
-      navigate("/cart");
+      navigate('/cart');
     } else {
-      toast.error("Please log in to access the cart");
+      toast.error('Please log in to access the cart');
     }
   };
 
   const handleFavoriteClick = () => {
     if (loggedInUser) {
-      navigate("/favorites");
+      navigate('/favorites');
     } else {
-      toast.error("Please log in to access the favorites page");
+      toast.error('Please log in to access the favorites page');
     }
   };
 
   return (
-    <Box sx={{ flexGrow: 1, alignItems: "center" }}>
+    <Box sx={{ flexGrow: 1, alignItems: 'center' }}>
       <AppBar position="relative" className="nav-bar" elevation={0}>
         <Toolbar>
           <Typography
@@ -113,19 +113,19 @@ export default function NavBar() {
             component="div"
             sx={{ flexGrow: 1, paddingLeft: 5 }}
             className="logo"
-            textAlign={"left"}
-            onClick={() => navigate("/")}
+            textAlign={'left'}
+            onClick={() => navigate('/')}
           >
             URBAN CULT
           </Typography>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleMenuOpen}
-              sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
+              sx={{ color: theme === 'dark' ? '#ffffff' : '#000000' }}
             >
               <MenuIcon />
             </IconButton>
@@ -137,7 +137,7 @@ export default function NavBar() {
             >
               <MenuItem
                 onClick={() => {
-                  navigate("/");
+                  navigate('/');
                   handleMenuClose();
                 }}
               >
@@ -145,7 +145,7 @@ export default function NavBar() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  navigate("/products");
+                  navigate('/products');
                   handleMenuClose();
                 }}
               >
@@ -156,41 +156,41 @@ export default function NavBar() {
           </Box>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
               gap: 2,
               flexGrow: 1,
-              justifyContent: "flex-end",
+              justifyContent: 'flex-end',
             }}
           >
-            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
               <Button
                 variant="text"
                 sx={{
-                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  color: theme === 'dark' ? '#ffffff' : '#000000',
                   fontSize: 14,
                 }}
-                onClick={() => navigate("/")}
+                onClick={() => navigate('/')}
               >
                 HOME
               </Button>
               <Button
                 variant="text"
                 sx={{
-                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  color: theme === 'dark' ? '#ffffff' : '#000000',
                   fontSize: 14,
                 }}
-                onClick={() => navigate("/products")}
+                onClick={() => navigate('/products')}
               >
                 PRODUCTS
               </Button>
               <Button
                 variant="text"
                 sx={{
-                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  color: theme === 'dark' ? '#ffffff' : '#000000',
                   fontSize: 14,
                 }}
-                onClick={handleFavoriteClick}
+                onClick={() => navigate('/favorite')}
               >
                 FAVORITES
               </Button>
@@ -199,16 +199,16 @@ export default function NavBar() {
           <Box
             className="nav-btn"
             sx={{
-              display: "flex",
+              display: 'flex',
               gap: 2,
-              alignItems: "center",
-              flexDirection: { xs: "row", md: "row" },
+              alignItems: 'center',
+              flexDirection: { xs: 'row', md: 'row' },
             }}
           >
             <ModeToggle />
             <IconButton
               onClick={handleSearchFocus}
-              sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
+              sx={{ color: theme === 'dark' ? '#ffffff' : '#000000' }}
             >
               <SearchIcon />
             </IconButton>
@@ -221,26 +221,26 @@ export default function NavBar() {
                 onBlur={handleSearchBlur}
                 onKeyDown={handleKeyDown}
                 sx={{
-                  width: "300px",
-                  backgroundColor: "#f9f9f9",
-                  borderRadius: "30px",
-                  padding: "2px 10px",
+                  width: '300px',
+                  backgroundColor: '#f9f9f9',
+                  borderRadius: '30px',
+                  padding: '2px 10px',
                 }}
               />
             )}
             <Button
               variant="text"
-              sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
+              sx={{ color: theme === 'dark' ? '#ffffff' : '#000000' }}
               onClick={handleCartClick}
             >
-              <ShoppingCartIcon size={"20px"} />
+              <ShoppingCartIcon size={'20px'} />
             </Button>
             {userName ? (
               <>
                 <Button
                   variant="text"
                   sx={{
-                    color: theme === "dark" ? "#ffffff" : "#000000",
+                    color: theme === 'dark' ? '#ffffff' : '#000000',
                     fontSize: 14,
                   }}
                   onClick={handleUserMenuOpen}
@@ -258,10 +258,10 @@ export default function NavBar() {
             ) : (
               <Button
                 variant="text"
-                sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
-                onClick={() => navigate("/signIn")}
+                sx={{ color: theme === 'dark' ? '#ffffff' : '#000000' }}
+                onClick={() => navigate('/signIn')}
               >
-                <AccountCircleIcon size={"20px"} />
+                <AccountCircleIcon size={'20px'} />
               </Button>
             )}
           </Box>

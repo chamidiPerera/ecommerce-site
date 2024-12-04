@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import "./ProductCard.css";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import './ProductCard.css';
 
 function ProductCard({ image, name, price, availability, product, id }) {
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(
-    localStorage.getItem(`favorite-${product.id}`) ? true : false
+    localStorage.getItem(`favorite-${product.id}`) ? true : false,
   );
   const toggleFavorite = () => {
-    const user = JSON.parse(localStorage.getItem("user")) || { favorites: [] };
+    const user = JSON.parse(localStorage.getItem('user')) || { favorites: [] };
 
     if (isFavorite) {
       const updatedFavorites = user.favorites.filter(
-        (fav) => fav.id !== product.id
+        (fav) => fav.id !== product.id,
       );
       user.favorites = updatedFavorites;
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
       setIsFavorite(false);
     } else {
       if (!user.favorites.find((fav) => fav.id === product.id)) {
         user.favorites.push(product);
       }
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
       setIsFavorite(true);
     }
   };
@@ -41,7 +42,7 @@ function ProductCard({ image, name, price, availability, product, id }) {
         </div>
         <div className="icon" onClick={toggleFavorite}>
           {isFavorite ? (
-            <FavoriteIcon style={{ color: "red" }} />
+            <FavoriteIcon style={{ color: 'red' }} />
           ) : (
             <FavoriteBorderIcon />
           )}
@@ -49,7 +50,7 @@ function ProductCard({ image, name, price, availability, product, id }) {
       </div>
       <h3>{name}</h3>
       <p className="product-price">
-        {availability > 0 ? `LKR ${price}` : "SOLD OUT"}
+        {availability > 0 ? `LKR ${price}` : 'SOLD OUT'}
       </p>
     </div>
   );

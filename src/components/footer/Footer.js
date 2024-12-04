@@ -51,7 +51,7 @@ function Footer() {
           />
           <img
             src={diners}
-            alt="diner's club card card"
+            alt="diner's club card"
             className="payment-method-image"
           />
           <img

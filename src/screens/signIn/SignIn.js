@@ -1,29 +1,27 @@
-import React, { useCallback, useContext, useState } from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-import "./SignIn.css";
-import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
-import { ThemeContext } from "@emotion/react";
-import toast from "react-hot-toast";
+import React, { useContext, useState } from 'react';
+import { Box, Typography, TextField, Button } from '@mui/material';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '@emotion/react';
+import toast from 'react-hot-toast';
+import './SignIn.css';
 
-// Sample user data
-const users = JSON.parse(localStorage.getItem("users")) || [];
+const users = JSON.parse(localStorage.getItem('users')) || [];
 
 const signInValidationSchema = Yup.object({
-  email: Yup.string().email("Invalid email").required("Email is required"),
+  email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
 });
 
 const signUpValidationSchema = Yup.object({
-  name: Yup.string().required("Name is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
 });
 
 const SignIn = () => {
@@ -34,18 +32,18 @@ const SignIn = () => {
   const handleSignIn = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser && existingUser.password === values.password) {
-      localStorage.setItem("loggedInEmail", values.email);
-      toast.success("Login Successful!");
-      navigate("/products");
+      localStorage.setItem('loggedInEmail', values.email);
+      toast.success('Login Successful!');
+      navigate('/products');
     } else {
-      toast.error("Invalid e-mail or password!");
+      toast.error('Invalid e-mail or password!');
     }
   };
 
   const handleSignUp = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser) {
-      toast.error("E-mail already exists. Please sign in!");
+      toast.error('E-mail already exists. Please sign in!');
     } else {
       const newUser = {
         email: values.email,
@@ -53,10 +51,10 @@ const SignIn = () => {
         name: values.name,
       };
       users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("loggedInEmail", values.email);
-      toast.success("Sign Up Successful!");
-      navigate("/signIn");
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('loggedInEmail', values.email);
+      toast.success('Sign Up Successful!');
+      navigate('/signIn');
     }
   };
 
@@ -68,11 +66,11 @@ const SignIn = () => {
           <ul className="benefit-list">
             <li className="list-pints"> FREE Special Gift to a new member</li>
             <li className="list-pints">
-              {" "}
+              {' '}
               Get 2x URBAN CULT Points to purchase items
             </li>
             <li className="list-pints">
-              Get special voucher code every month{" "}
+              Get special voucher code every month{' '}
             </li>
             <li className="list-pints"> Claim Voucher Disc. Up To 50%</li>
           </ul>
@@ -87,7 +85,7 @@ const SignIn = () => {
           alignItems="center"
           sx={{
             backgroundImage:
-              "linear-gradient(to left, #b997bb, #e0bdd2,#ffffff)",
+              'linear-gradient(to left, #b997bb, #e0bdd2,#ffffff)',
           }}
         >
           <Box
@@ -98,18 +96,18 @@ const SignIn = () => {
             justifyContent="center"
             alignItems="center"
             sx={{
-              backgroundColor: "rgba(255,255,255,0.5)",
+              backgroundColor: 'rgba(255,255,255,0.5)',
               borderRadius: 5,
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
             }}
           >
             <h1>URBAN CULT</h1>
-            <h2>{isSignUp ? "Create an Account" : "WELCOME BACK"}</h2>
+            <h2>{isSignUp ? 'Create an Account' : 'WELCOME BACK'}</h2>
             <Formik
               initialValues={
                 isSignUp
-                  ? { name: "", email: "", password: "" }
-                  : { email: "", password: "" }
+                  ? { name: '', email: '', password: '' }
+                  : { email: '', password: '' }
               }
               validationSchema={
                 isSignUp ? signUpValidationSchema : signInValidationSchema
@@ -165,7 +163,7 @@ const SignIn = () => {
                     fullWidth
                     className="submit-btn"
                   >
-                    {isSignUp ? "Sign Up" : "Sign In"}
+                    {isSignUp ? 'Sign Up' : 'Sign In'}
                   </Button>
                 </Form>
               )}
@@ -173,7 +171,7 @@ const SignIn = () => {
             <Box mt={3} textAlign="center">
               {isSignUp ? (
                 <Typography>
-                  Already have an account?{" "}
+                  Already have an account?{' '}
                   <Button
                     onClick={() => setIsSignUp(false)}
                     color="primary"
@@ -185,7 +183,7 @@ const SignIn = () => {
                 </Typography>
               ) : (
                 <Typography>
-                  Don't have an account?{" "}
+                  Don't have an account?{' '}
                   <Button
                     onClick={() => setIsSignUp(true)}
                     color="primary"

@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
-import "./Cart.css";
-import { h4, Button, TextField } from "@mui/material";
-import { productList } from "../../data/ProductsList";
-import AddQuantityButtons from "../../components/increamentDecreamentButtons/AddQuantityButtons";
-import toast from "react-hot-toast";
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-import { SpaceBar } from "@mui/icons-material";
+import React, { useEffect, useState } from 'react';
+import { Button, TextField } from '@mui/material';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import toast from 'react-hot-toast';
+import { productList } from '../../data/ProductsList';
+import AddQuantityButtons from '../../components/increamentDecreamentButtons/AddQuantityButtons';
+import './Cart.css';
 
 function Cart() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [totalCartAmount, setTotalCartAmount] = useState(0);
-  const [promoCode, setPromoCode] = useState("");
+  const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
 
   useEffect(() => {
-    const loggedInEmail = localStorage.getItem("loggedInEmail");
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInEmail = localStorage.getItem('loggedInEmail');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
 
     if (loggedInEmail) {
       const user = users.find((user) => user.email === loggedInEmail);
@@ -28,7 +27,7 @@ function Cart() {
           const product = productList.find((p) => p.id === cartItem.id);
           return {
             ...cartItem,
-            image: product?.image || "",
+            image: product?.image || '',
             maxQuantity: product?.availability || 1,
           };
         });
@@ -40,7 +39,7 @@ function Cart() {
   useEffect(() => {
     const total = cartItems.reduce((sum, item) => {
       const itemTotal =
-        parseInt(item.price.replace(/,/g, ""), 10) * item.quantity;
+        parseInt(item.price.replace(/,/g, ''), 10) * item.quantity;
       return sum + itemTotal;
     }, 0);
     setTotalCartAmount(total);
@@ -81,22 +80,22 @@ function Cart() {
   };
 
   const handleApplyPromoCode = () => {
-    if (promoCode === "1234") {
+    if (promoCode === '1234') {
       setDiscount(20);
-    } else if (promoCode === "5678") {
+    } else if (promoCode === '5678') {
       setDiscount(5);
     } else {
-      toast.error("Oops! Invalid Promo Code");
+      toast.error('Oops! Invalid Promo Code');
       setDiscount(0);
     }
   };
 
   const updateLocalStorageUser = (updatedUser) => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem('users')) || [];
     const updatedUsers = users.map((user) =>
-      user.email === updatedUser.email ? updatedUser : user
+      user.email === updatedUser.email ? updatedUser : user,
     );
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
     setLoggedInUser(updatedUser);
   };
 
@@ -134,9 +133,9 @@ function Cart() {
                     />
                   </div>
                   <h5 className="cart-item-total">
-                    LKR{" "}
+                    LKR{' '}
                     {(
-                      parseInt(item.price.replace(/,/g, ""), 10) * item.quantity
+                      parseInt(item.price.replace(/,/g, ''), 10) * item.quantity
                     ).toLocaleString()}
                   </h5>
                   <Button
@@ -191,8 +190,8 @@ function Cart() {
                 <div className="total-section-row">
                   <h4>Discount:</h4>
                   <h4>
-                    {" "}
-                    {discount}% (LKR{" "}
+                    {' '}
+                    {discount}% (LKR{' '}
                     {((totalCartAmount * discount) / 100).toLocaleString()})
                   </h4>
                 </div>

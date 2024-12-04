@@ -1,21 +1,21 @@
-import "./App.css";
-import Home from "./screens/home/Home";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { useState } from "react";
-import NavBar from "./components/navBar/NavBar";
-import SignIn from "./screens/signIn/SignIn";
-import Products from "./screens/products/Products";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProductDetails from "./components/productDetails/ProductDetails";
-import Cart from "./screens/cart/Cart";
-import Footer from "./components/footer/Footer";
-import Favorites from "./screens/favorites/Favorites";
-import { Toaster } from "react-hot-toast";
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { ThemeContext } from './contexts/ThemeContext';
+import Home from './screens/home/Home';
+import NavBar from './components/navBar/NavBar';
+import SignIn from './screens/signIn/SignIn';
+import Products from './screens/products/Products';
+import ProductDetails from './components/productDetails/ProductDetails';
+import Cart from './screens/cart/Cart';
+import Footer from './components/footer/Footer';
+import Favorites from './screens/favorites/Favorites';
+import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
     console.log({ theme });
   };
 
