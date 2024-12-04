@@ -154,11 +154,11 @@ function Cart() {
             <div className="price-section">
               <div className="promo-code">
                 <h4>Coupon Code</h4>
-                <h5>
+                <h4>
                   If you know the promo code to get the discount, please enter
                   it here. The discount will apply only if you are eligible for
                   it
-                </h5>
+                </h4>
                 <TextField
                   label="Enter Promo Code"
                   variant="outlined"

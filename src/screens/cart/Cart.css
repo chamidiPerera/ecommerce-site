@@ -138,11 +138,11 @@ justify-content: space-around;
   justify-content: space-between;
 }
 
-.promo-code h5{
+.promo-code h4{
   text-align: left;
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
-
+font-weight: normal;
 }
 
 .total-section {
