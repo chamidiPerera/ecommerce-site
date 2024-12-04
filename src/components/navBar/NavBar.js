@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton, TextField, Snackbar, Alert } from '@mui/material'; // Import Snackbar and Alert
+import { IconButton, TextField } from '@mui/material';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import ModeToggle from '../modeToggle/ModeToggle';
 import SearchIcon from '@mui/icons-material/Search';
