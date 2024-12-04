@@ -138,21 +138,31 @@
   font-weight: bold;
 }
 
-@media (max-width: 960px) {
-  .container {
+.sign-in-form {
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+
+  .sign-in {
     flex-direction: column;
   }
 
-  .left {
+  .sign-in-right {
+    order: 1;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .sign-in-left {
     display: none;
   }
 
-  .right {
-    width: 100%;
-    padding: 20px;
+  .sign-in-left-content h2{
+    font-size: 12px;
   }
-}
 
-.sign-in-form {
-  width: 80%;
+  .sign-in-left::after {
+    background-position: center;
+  }
 }
