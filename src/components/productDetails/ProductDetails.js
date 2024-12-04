@@ -8,14 +8,16 @@ import './ProductDetails.css';
 function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const [mainImage, setMainImage] = useState(item.image);
+  const [mainImage, setMainImage] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const location = useLocation();
   const item = location.state;
 
-  const totalAmount = item.price * quantity;
-
   useEffect(() => {
+    if (item?.image) {
+      setMainImage(item.image);
+    }
+
     const loggedInEmail = localStorage.getItem('loggedInEmail');
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -23,7 +25,13 @@ function ProductDetails() {
       const user = users.find((user) => user.email === loggedInEmail);
       setLoggedInUser(user);
     }
-  }, []);
+  }, [item]);
+
+  const totalAmount = item ? item.price * quantity : 0;
+
+  if (!item) {
+    return <div>Loading...</div>;
+  }
 
   const handleAddToCart = () => {
     if (!loggedInUser) {
@@ -96,7 +104,6 @@ function ProductDetails() {
           ))}
         </div>
       </div>
-
       <div className="right-side">
         <h2 className="product-name">{item.name}</h2>
         <h3 className="price">LKR {item.price}</h3>
@@ -144,10 +151,12 @@ function ProductDetails() {
             ))}
           </div>
         </div>
+
         <div className="material-info">
           <h4>Material:</h4>
           <p>{item.material}</p>
         </div>
+
         <div className="care-instructions">
           <h4>Care Instructions:</h4>
           <p>{item.careInstructions}</p>
