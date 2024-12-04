@@ -10,14 +10,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import ModeToggle from "../modeToggle/ModeToggle";
+import SearchIcon from "@mui/icons-material/Search";
+
 import "./NavBar.css";
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [userMenuAnchorEl, setUserMenuAnchorEl] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Manage search bar state
   const loggedInEmail = localStorage.getItem("loggedInEmail");
   const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
@@ -60,6 +64,29 @@ export default function NavBar() {
     navigate("/");
   };
 
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      navigate("/products", { state: { searchQuery } });
+      setIsSearchOpen(false); // Close the search bar after searching
+    }
+  };
+
+  const handleSearchFocus = () => {
+    setIsSearchOpen(true); // Expand the search bar when focused
+  };
+
+  const handleSearchBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsSearchOpen(false); // Close search bar if click is outside
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch(); // Trigger search on Enter key
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1, alignItems: "center" }}>
       <AppBar position="relative" className="nav-bar" elevation={0}>
@@ -70,7 +97,7 @@ export default function NavBar() {
             sx={{ flexGrow: 1, paddingLeft: 5 }}
             className="logo"
             textAlign={"left"}
-            onClick={() => navigate("./")}
+            onClick={() => navigate("/")}
           >
             URBAN CULT
           </Typography>
@@ -91,20 +118,87 @@ export default function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem onClick={handleMenuClose}>HOME</MenuItem>
-              <MenuItem onClick={handleMenuClose}>PRODUCTS</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                  handleMenuClose();
+                }}
+              >
+                HOME
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/products");
+                  handleMenuClose();
+                }}
+              >
+                PRODUCTS
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/favorite");
+                  handleMenuClose();
+                }}
+              >
+                FAVORITES
+              </MenuItem>
             </Menu>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
               display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
               gap: 2,
-              flexWrap: "wrap",
+              flexGrow: 1,
+              justifyContent: "flex-end",
             }}
           >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              {/* Move mode and search icons here */}
+              <ModeToggle />
+              <IconButton
+                onClick={handleSearchFocus}
+                sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
+              >
+                <SearchIcon />
+              </IconButton>
+              {isSearchOpen && (
+                <TextField
+                  variant="outlined"
+                  placeholder="Search for products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onBlur={handleSearchBlur}
+                  onKeyDown={handleKeyDown}
+                  sx={{
+                    transition: "all 0.3s ease",
+                    width: isSearchOpen ? "300px" : "0px",
+                    opacity: isSearchOpen ? 1 : 0,
+                    marginLeft: isSearchOpen ? "10px" : "0",
+                    backgroundColor: "#f9f9f9",
+                    borderRadius: "30px",
+                    padding: "2px 10px",
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "30px",
+                      height: "50px",
+                      fontSize: "16px",
+                      fontWeight: "400",
+                      color: "#333",
+                      "& fieldset": {
+                        border: "none",
+                      },
+                    },
+                    "& .MuiOutlinedInput-input": {
+                      padding: "10px 10px",
+                    },
+                    "& input::placeholder": {
+                      fontStyle: "italic",
+                      color: "#aaa",
+                    },
+                  }}
+                />
+              )}
+            </Box>
             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
               <Button
                 variant="text"
@@ -147,7 +241,6 @@ export default function NavBar() {
               flexDirection: { xs: "row", md: "row" },
             }}
           >
-            <ModeToggle />
             <Button
               variant="text"
               sx={{ color: theme === "dark" ? "#ffffff" : "#000000" }}
@@ -155,7 +248,6 @@ export default function NavBar() {
             >
               <ShoppingCartIcon size={"20px"} />
             </Button>
-
             {userName ? (
               <>
                 <Button

@@ -2,21 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { productList } from "../../data/ProductsList";
 import ProductCard from "../../components/productCard/ProductCard";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Button,
-} from "@mui/material";
-import "./Products.css";
+import { Tabs, Tab, Button, Menu, MenuItem, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { TextField } from "@mui/material";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import "./Products.css";
 
 function Products() {
   const location = useLocation();
   const [category, setCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState(""); // Sorting criteria
+  const [anchorEl, setAnchorEl] = useState(null); // Anchor for filter menu
+  const [selectedFilter, setSelectedFilter] = useState("Filter"); // Selected filter state
+
+  const categories = [
+    "All Categories",
+    "Tops",
+    "Bottoms",
+    "Outerwear",
+    "Dresses",
+  ];
 
   useEffect(() => {
     if (location.state?.searchQuery) {
@@ -24,31 +29,46 @@ function Products() {
     }
   }, [location.state]);
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
+  const handleCategoryChange = (_, newValue) => {
+    setCategory(newValue === 0 ? "" : categories[newValue]);
   };
 
-  const handleClearFilters = () => {
-    setCategory("");
-    setSearchQuery("");
+  const handleSortOrderChange = (order, label) => {
+    setSortOrder(order);
+    setSelectedFilter(label); // Update selected filter text
+    setAnchorEl(null); // Close the menu
   };
 
-  const filteredProducts = productList.filter((product) => {
-    const matchesCategory = category
-      ? product.category.toLowerCase() === category.toLowerCase()
-      : true;
-    const matchesSearch = searchQuery
-      ? product.name.toLowerCase().includes(searchQuery) ||
-        product.category.toLowerCase().includes(searchQuery)
-      : true;
-    return matchesCategory && matchesSearch;
-  });
+  const handleFilterMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleFilterMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const filteredProducts = productList
+    .filter((product) => {
+      const matchesCategory = category
+        ? product.category.toLowerCase() === category.toLowerCase()
+        : true;
+      const matchesSearch = searchQuery
+        ? product.name.toLowerCase().includes(searchQuery) ||
+          product.category.toLowerCase().includes(searchQuery)
+        : true;
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "priceHighToLow") return b.price - a.price;
+      if (sortOrder === "priceLowToHigh") return a.price - b.price;
+      return 0; // Default sorting
+    });
 
   return (
     <div>
       <div className="products-page-header">
         <div className="products-page-header-text-area">
-          <h1>SEASONAL OFFERS</h1>
+          <h2>SEASONAL OFFERS</h2>
           <h4>
             This holiday season, enjoy incredible savings with our exclusive
             Christmas discounts!
@@ -59,71 +79,72 @@ function Products() {
           </h6>
         </div>
       </div>
+      <h1>SHOP</h1>
       <div className="filter-section">
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          color="gray"
-          label="Search"
-          size="small"
-          value={searchQuery}
-          onChange={(text) => setSearchQuery(text.target.value)}
-          InputProps={{
-            endAdornment: <SearchIcon />,
-          }}
+        <Tabs
+          value={category ? categories.indexOf(category) : 0}
+          onChange={handleCategoryChange}
+          variant="scrollable"
+          scrollButtons="auto"
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "8px",
-            height: "40px",
-            "& .MuiOutlinedInput-root": {
-              height: "40px",
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
+            width: "100%",
+            maxWidth: 600,
+            "& .MuiTabs-indicator": {
+              backgroundColor: "black",
             },
-            "& input": {
-              paddingLeft: "12px",
+            "& .Mui-selected": {
+              color: "#000000",
             },
-          }}
-        />
-        <FormControl
-          className="category-form"
-          sx={{
-            width: "450px",
-            height: "40px",
           }}
         >
-          <InputLabel id="category-select-label">Category</InputLabel>
-          <Select
-            labelId="category-select-label"
-            id="category-select"
-            value={category}
-            label="Category"
-            onChange={handleChange}
-            sx={{
-              height: "40px",
-              lineHeight: "20px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <MenuItem value="">All Categories</MenuItem>
-            <MenuItem value="Tops">Tops</MenuItem>
-            <MenuItem value="Bottoms">Bottoms</MenuItem>
-            <MenuItem value="Outerwear">Outerwear</MenuItem>
-            <MenuItem value="Dresses">Dresses</MenuItem>
-          </Select>
-        </FormControl>
+          {categories.map((cat, index) => (
+            <Tab key={index} label={cat} />
+          ))}
+        </Tabs>
+
         <Button
           variant="outlined"
-          onClick={handleClearFilters}
-          className="filter-btn"
+          startIcon={<FilterListIcon />}
+          onClick={handleFilterMenuOpen}
           sx={{
-            height: "40px",
-            padding: "0 16px",
-            minWidth: "200px",
+            height: "36px",
+            padding: "0 12px",
+            minWidth: "150px",
+            borderColor: "black", // Border color set to black
+            color: "black", // Text color set to black
+            fontSize: "14px", // Slightly smaller font size
+            fontWeight: "600", // Make text bold
+            borderRadius: "8px", // Modern rounded corners
+            textTransform: "capitalize", // Disable uppercase text
+            "&:hover": {
+              borderColor: "black", // Keep border black on hover
+              backgroundColor: "rgba(0, 0, 0, 0.05)", // Subtle hover effect
+            },
           }}
         >
-          Clear Filters
+          {selectedFilter} {/* Show the selected filter option */}
         </Button>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleFilterMenuClose}
+        >
+          <MenuItem
+            onClick={() =>
+              handleSortOrderChange("priceHighToLow", "Price: High to Low")
+            }
+          >
+            Price: High to Low
+          </MenuItem>
+          <MenuItem
+            onClick={() =>
+              handleSortOrderChange("priceLowToHigh", "Price: Low to High")
+            }
+          >
+            Price: Low to High
+          </MenuItem>
+        </Menu>
       </div>
 
       <div className="product-grid">

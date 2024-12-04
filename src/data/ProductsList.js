@@ -2,12 +2,13 @@ import image1 from "../../src/assets/productImages/snap-pure-blouse.png";
 import image2 from "../../src/assets/productImages/west-bootscut-denim.png";
 import image3 from "../../src/assets/productImages/ribbon-check-long.png";
 import image4 from "../../src/assets/productImages/shouldcut-knit.png";
-import image5 from "../../src/assets/productImages/v-neck-yellow.png";
+import image5 from "../../src/assets/productImages/venus-halter-dress.png";
 import image6 from "../../src/assets/productImages/v-neck-yellow.png";
 import image7 from "../../src/assets/productImages/macaroon-dry-half.png";
 import image8 from "../../src/assets/productImages/wave-htripe-hally.png";
 import image9 from "../../src/assets/productImages/eve-punching-floral.png";
 import image10 from "../../src/assets/productImages/floral-waffle-tee.png";
+import image11 from "../../src/assets/productImages/euphoria-crop-blouse.png";
 
 export const productList = [
   {
@@ -23,7 +24,7 @@ export const productList = [
     colors: ["White", "Red", "Black"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 2,
@@ -38,7 +39,7 @@ export const productList = [
     colors: ["Blue", "Black"],
     material: "98% Cotton, 2% Elastane",
     careInstructions: "Wash inside out with similar colors.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 3,
@@ -47,13 +48,13 @@ export const productList = [
     description:
       "Stay cozy and stylish with this checkered long jacket. Designed with a flattering cut and detailed ribbon accents, it’s a perfect choice for cool weather and layering.",
     image: image3,
-    category: "Outerwear",
+    category: "Dresses",
     availability: 5,
     sizes: ["S", "M", "L"],
     colors: ["Black", "Gray"],
     material: "Polyester blend",
     careInstructions: "Dry clean only.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 4,
@@ -68,7 +69,7 @@ export const productList = [
     colors: ["Beige", "White"],
     material: "Wool blend",
     careInstructions: "Hand wash in cold water.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 5,
@@ -83,7 +84,7 @@ export const productList = [
     colors: ["Red", "Navy Blue"],
     material: "Silk blend",
     careInstructions: "Dry clean only.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 6,
@@ -98,8 +99,9 @@ export const productList = [
     colors: ["Yellow"],
     material: "Cotton",
     careInstructions: "Machine wash cold.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
+
   {
     id: 7,
     name: "Macaroon Dry Half",
@@ -113,7 +115,7 @@ export const productList = [
     colors: ["Cream", "Pink"],
     material: "Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 8,
@@ -128,22 +130,22 @@ export const productList = [
     colors: ["Blue", "Green"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 9,
     name: "Eve Punching Floral",
     price: `${5600}`,
     description:
-      "A floral-patterned dress with delicate punch details, ideal for a chic and feminine look. Perfect for brunches or casual gatherings.",
+      "A floral-patterned top with delicate punch details, ideal for a chic and feminine look. Perfect for brunches or casual gatherings.",
     image: image9,
-    category: "Dresses",
+    category: "Tops",
     availability: 2,
     sizes: ["S", "M"],
     colors: ["White", "Pink"],
     material: "Cotton blend",
     careInstructions: "Hand wash for longevity.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
   },
   {
     id: 10,
@@ -158,6 +160,21 @@ export const productList = [
     colors: ["Yellow", "Green"],
     material: "100% Cotton",
     careInstructions: "Machine wash cold, tumble dry low.",
-    thumbnailImages:[image1,image10,image2,image1],
+    thumbnailImages: [image1, image10, image2, image1],
+  },
+  {
+    id: 11,
+    name: "Euphoria Crop Blouse",
+    price: `${2600}`,
+    description:
+      "Brighten your wardrobe with this vibrant v-neck top in a cheerful yellow. Its soft, breathable fabric makes it perfect for warm weather.",
+    image: image11,
+    category: "Tops",
+    availability: 7,
+    sizes: ["S", "M", "L"],
+    colors: ["Yellow"],
+    material: "Cotton",
+    careInstructions: "Machine wash cold.",
+    thumbnailImages: [image1, image10, image2, image1],
   },
 ];

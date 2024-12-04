@@ -55,7 +55,7 @@
   }
 
   .MuiBox-root {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .footer-icons {
@@ -64,8 +64,31 @@
 
   .nav-btn {
     display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap; 
+    gap: 16px; /* Adjust the spacing if needed */
+    justify-content: center; /* Center the buttons horizontally */
+    flex-wrap: wrap; /* Ensure it wraps to the next line if space is tight */
+  }
+}
+
+/* Existing CSS remains unchanged */
+@media (max-width: 768px) {
+  .logo {
+    display: none; /* Hide logo on mobile */
+  }
+
+  .menu-icon {
+    display: block; /* Show menu icon */
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 10;
   }
 }
