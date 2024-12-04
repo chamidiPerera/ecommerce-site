@@ -10,6 +10,7 @@ import ProductDetails from "./components/productDetails/ProductDetails";
 import Cart from "./screens/cart/Cart";
 import Footer from "./components/footer/Footer";
 import Favorites from "./screens/favorites/Favorites";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -30,9 +31,8 @@ function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favorite" element={<Favorites />} />
-
-            
           </Routes>
+          <Toaster />
           <Footer />
         </BrowserRouter>
       </div>

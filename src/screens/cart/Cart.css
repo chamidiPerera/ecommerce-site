@@ -1,14 +1,39 @@
+@import "../../Theme.css";
+
 .cart-page {
   padding         : 20px;
-  font-family     : "Roboto", Arial, sans-serif;
-  background-color: #f9f9f9;
-  min-height      : 100vh;
+  font-family     : var(--font-family);
+  background-color: var(--color-white);
+  min-height      : 90vh;
+}
+
+.cart-page-content{
+  display: flex;
+}
+
+.cart-page h1{
+  font-family: var(--font-family);
+  font-size: var(--font-size-xxl);
+  color: var(--color-black);
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+ 
+}
+
+.cart-page-left{
+  width: 70vw;
+}
+
+.cart-page-right{
+  width: 30vw;
 }
 
 .cart-table {
   display       : flex;
   flex-direction: column;
   gap           : 10px;
+  box-shadow      : 0 4px 6px rgba(193, 188, 188, 0.8), 0 1px 3px rgba(182, 170, 170, 0.8);
+  padding: var(--spacing-md);
 }
 
 .cart-header,
@@ -17,7 +42,7 @@
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   align-items          : center;
   padding              : 10px;
-  border               : 1px solid #ddd;
+  border-bottom         : 1px solid #ddd;
   border-radius        : 5px;
   background-color     : #fff;
 }
@@ -25,10 +50,21 @@
 .cart-header {
   background-color: #f5f5f5;
   font-weight     : bold;
+  border:none;
 }
 
-.header-item {
+.cart-page h4 {
   text-align: center;
+  font-weight: bold;
+font-family: var(--font-family);
+font-size: var(--font-size-md);
+}
+
+.cart-page h5 {
+  text-align: center;
+  font-weight: normal;
+font-family: var(--font-family);
+font-size: var(--font-size-md);
 }
 
 .cart-product {
@@ -51,16 +87,15 @@
 }
 
 .remove-button {
-  color         : white;
-  text-transform: capitalize;
-  width         : 150px;
-  margin-left   : 20px;
+  color         : var(--color-black);
   display       : block;
-  text-align    : center;
+padding: 5px 20px 5px 20px;
+border-radius: 5px;
 }
 
 .remove-button:hover {
-  background-color: #d32f2f;
+box-shadow      : 0 4px 6px rgba(193, 188, 188, 0.8), 0 1px 3px rgba(182, 170, 170, 0.8);
+
 }
 
 .cart-grand-total {
@@ -76,26 +111,115 @@
   gap             : 10px;
   padding         : 20px;
   background-color: #f5f5f5;
-  width           : 350px;
-  box-shadow      : 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  margin-top: 20px;
+margin-left: 20px;
+justify-content: space-around;
+}
+
+.promo-code-field {
+  border-radius: 10px !important; /* Set border radius */
+  border: 1px solid black !important; /* Set border color */
+  width: 100%;
 }
 
 .apply-btn {
-  margin-top: 5px !important;
+  background-color: black !important; /* Set button color */
+  color: white !important; /* Set text color */
+  border-radius: 10px !important; /* Set border radius */
+  width: 100%;
+ 
 }
+
 
 .promo-code {
   display    : flex;
   align-items: flex-start;
-  gap        : 20px;
+  flex-direction: column;
+  height: 30vh;
+  justify-content: space-between;
+}
+
+.promo-code h5{
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+
 }
 
 .total-section {
-  display        : flex;
-  flex-direction : column;
-  align-items    : flex-start;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: rgb(256, 212, 140); /* Background color */
+  padding: 15px;
+  border-radius: 15px;
+box-shadow      : 0 4px 6px rgba(193, 188, 188, 0.8), 0 1px 3px rgba(182, 170, 170, 0.8);
+
+}
+
+.total-section h3 {
+  font-weight: bold;
+  font-size: var(--font-size-lg); /* Larger size for the main title */
+  text-align: left; /* Centering the Cart Total title */
+  margin-bottom: 10px;
+}
+
+.cart-total-title {
+  font-weight: bold;
+
+}
+
+.total-section-row {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+  padding: 5px 0;
+}
+
+.total-section-row h4 {
+  font-weight: normal;  
+  font-size: var(--font-size-md);
+}
+
+.total-section-row .price {
+  text-align: right; /* Ensures numbers are aligned to the right */
+}
+
+.total-section-row .total-highlight {
+  font-weight: bold;
+  background-color: #ffdf00; /* Highlight the Cart Total row */
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.total-section-row .price.total-highlight {
+  color: #d32f2f; /* Highlight the total amount with a different color */
+}
+
+.price {
+  font-weight: normal; 
+  font-size: 1em;
+}
+
+@media (max-width: 768px) {
+  .total-section {
+    padding: 10px;
+  }
+
+  .total-section-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-section-row h4 {
+    width: 100%;
+    text-align: left;
+  }
+
+  .total-section-row .price {
+    width: 100%;
+    text-align: left;
+  }
 }
 
 

@@ -24,7 +24,7 @@ function AddQuantityButtons({ maxQuantity, setQuantity }) {
   return (
     <ButtonGroup className="button-group" size="large" color="primary">
       <Button
-        className="button"
+        className="button button-minus" // Add class for minus button
         onClick={decrement}
         variant="text"
         disabled={count <= 1}
@@ -33,7 +33,7 @@ function AddQuantityButtons({ maxQuantity, setQuantity }) {
       </Button>
       <h4>{count}</h4>
       <Button
-        className="button"
+        className="button button-plus" // Add class for plus button
         onClick={increment}
         variant="text"
         disabled={count >= maxQuantity}

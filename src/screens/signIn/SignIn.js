@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 import { ThemeContext } from "@emotion/react";
+import toast from "react-hot-toast";
 
 // Sample user data
 const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -34,17 +35,17 @@ const SignIn = () => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser && existingUser.password === values.password) {
       localStorage.setItem("loggedInEmail", values.email);
-      alert("Logged in successfully!");
+      toast.success("Login Successful!");
       navigate("/products");
     } else {
-      alert("Invalid email or password.");
+      toast.error("Invalid e-mail or password!");
     }
   };
 
   const handleSignUp = (values) => {
     const existingUser = users.find((user) => user.email === values.email);
     if (existingUser) {
-      alert("Email already exists.");
+      toast.error("E-mail already exists. Please sign in!");
     } else {
       const newUser = {
         email: values.email,
@@ -54,7 +55,7 @@ const SignIn = () => {
       users.push(newUser);
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("loggedInEmail", values.email);
-      alert("Signed up successfully!");
+      toast.success("Sign Up Successful!");
       navigate("/signIn");
     }
   };

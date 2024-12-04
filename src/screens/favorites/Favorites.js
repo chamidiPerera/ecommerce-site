@@ -12,8 +12,8 @@ function Favorites() {
   }, []);
 
   return (
-    <div>
-      <h2>Your Favorites</h2>
+    <div className="favorites-page">
+      <h1>YOUR FAVORITES</h1>
       <div className="product-grid">
         {favorites.length > 0 ? (
           favorites.map((product) => (

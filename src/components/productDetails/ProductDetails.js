@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Alert, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AddQuantityButtons from "../increamentDecreamentButtons/AddQuantityButtons";
 import "./ProductDetails.css";
+import toast from "react-hot-toast";
 
 function ProductDetails() {
   const location = useLocation();
   const item = location.state;
   const [quantity, setQuantity] = useState(1);
-  const [alertVisible, setAlertVisible] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [mainImage, setMainImage] = useState(item.image);
   const [selectedSize, setSelectedSize] = useState(null);
@@ -27,12 +27,12 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     if (!loggedInUser) {
-      alert("Please log in to add items to the cart.");
+      toast.error("Please login to add items to the cart");
       return;
     }
 
     if (!selectedSize) {
-      alert("Please select a size.");
+      toast.error("Please select a size");
       return;
     }
 
@@ -69,8 +69,7 @@ function ProductDetails() {
       localStorage.setItem("users", JSON.stringify(users));
     }
 
-    setAlertVisible(true);
-    setTimeout(() => setAlertVisible(false), 3000);
+    toast.success("Item added to cart");
   };
 
   const handleThumbnailHover = (imageUrl) => {
@@ -164,8 +163,6 @@ function ProductDetails() {
         <Button className="add-to-cart" onClick={handleAddToCart}>
           Add to Cart
         </Button>
-
-        {alertVisible && <Alert severity="success">Added to cart!</Alert>}
       </div>
     </div>
   );

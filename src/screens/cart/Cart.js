@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
-import { Typography, Box, Button, TextField } from "@mui/material";
+import { h4, Button, TextField } from "@mui/material";
 import { productList } from "../../data/ProductsList";
 import AddQuantityButtons from "../../components/increamentDecreamentButtons/AddQuantityButtons";
+import toast from "react-hot-toast";
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import { SpaceBar } from "@mui/icons-material";
 
 function Cart() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -83,7 +86,7 @@ function Cart() {
     } else if (promoCode === "5678") {
       setDiscount(5);
     } else {
-      alert("Invalid promo code.");
+      toast.error("Oops! Invalid Promo Code");
       setDiscount(0);
     }
   };
@@ -99,65 +102,72 @@ function Cart() {
 
   return (
     <div className="cart-page">
-      <Typography variant="h4" gutterBottom>
-        My Cart
-      </Typography>
+      <h1>MY CART</h1>
       {cartItems.length > 0 ? (
-        <Box className="cart-page">
-          <Box className="cart-table">
-            <Box className="cart-header">
-              <Typography className="header-item">Product</Typography>
-              <Typography className="header-item">Price</Typography>
-              <Typography className="header-item">Quantity</Typography>
-              <Typography className="header-item">Total</Typography>
-              <Typography className="header-item">Actions</Typography>
-            </Box>
-            {cartItems.map((item, index) => (
-              <Box key={index} className="cart-row">
-                <Box className="cart-product">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="product-image-cart"
-                  />
-                  <Typography>{item.name}</Typography>
-                </Box>
-                <Typography className="cart-item-price">
-                  LKR {item.price}
-                </Typography>
-                <Box className="cart-item-quantity">
-                  <AddQuantityButtons
-                    maxQuantity={item.maxQuantity}
-                    setQuantity={(newQuantity) =>
-                      handleQuantityChange(index, newQuantity)
-                    }
-                  />
-                </Box>
-                <Typography className="cart-item-total">
-                  LKR{" "}
-                  {(
-                    parseInt(item.price.replace(/,/g, ""), 10) * item.quantity
-                  ).toLocaleString()}
-                </Typography>
-                <Button
-                  variant="contained"
-                  size="small"
-                  className="remove-button"
-                  onClick={() => handleRemoveItem(index)}
-                >
-                  Remove
-                </Button>
-              </Box>
-            ))}
-            <Box className="price-section">
+        <div className="cart-page-content">
+          <div className="cart-page-left">
+            <div className="cart-table">
+              <div className="cart-header">
+                <h4>Product</h4>
+                <h4>Price</h4>
+                <h4>Quantity</h4>
+                <h4>Total</h4>
+                <h4>Actions</h4>
+              </div>
+              {cartItems.map((item, index) => (
+                <div key={index} className="cart-row">
+                  <div className="cart-product">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="product-image-cart"
+                    />
+                    <h5>{item.name}</h5>
+                  </div>
+                  <h5 className="cart-item-price">LKR {item.price}</h5>
+                  <div className="cart-item-quantity">
+                    <AddQuantityButtons
+                      maxQuantity={item.maxQuantity}
+                      setQuantity={(newQuantity) =>
+                        handleQuantityChange(index, newQuantity)
+                      }
+                    />
+                  </div>
+                  <h5 className="cart-item-total">
+                    LKR{" "}
+                    {(
+                      parseInt(item.price.replace(/,/g, ""), 10) * item.quantity
+                    ).toLocaleString()}
+                  </h5>
+                  <Button
+                    variant="text"
+                    size="small"
+                    onClick={() => handleRemoveItem(index)}
+                  >
+                    <DeleteOutlineRoundedIcon className="remove-button" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="cart-page-right">
+            <div className="price-section">
               <div className="promo-code">
+                <h4>Coupon Code</h4>
+                <h5>
+                  If you know the promo code to get the discount, please enter
+                  it here. The discount will apply only if you are eligible for
+                  it
+                </h5>
                 <TextField
                   label="Enter Promo Code"
                   variant="outlined"
                   size="small"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
+                  className="promo-code-field"
                 />
+
                 <Button
                   variant="contained"
                   color="primary"
@@ -169,22 +179,33 @@ function Cart() {
                 </Button>
               </div>
               <div className="total-section">
-                <Typography variant="body1">
-                  Subtotal: LKR {totalCartAmount.toLocaleString()}
-                </Typography>
-                <Typography variant="body1">
-                  Discount: {discount}% (LKR{" "}
-                  {((totalCartAmount * discount) / 100).toLocaleString()})
-                </Typography>
-                <Typography variant="h5">
-                  Total: LKR {finalAmount.toLocaleString()}
-                </Typography>
+                <h3>Cart Total</h3>
+                <div className="total-section-row">
+                  <h4>Cart Subtotal: </h4>
+                  <h4>LKR {totalCartAmount.toLocaleString()}</h4>
+                </div>
+                <div className="total-section-row">
+                  <h4>Shipping: </h4>
+                  <h4>Free</h4>
+                </div>
+                <div className="total-section-row">
+                  <h4>Discount:</h4>
+                  <h4>
+                    {" "}
+                    {discount}% (LKR{" "}
+                    {((totalCartAmount * discount) / 100).toLocaleString()})
+                  </h4>
+                </div>
+                <div className="total-section-row">
+                  <h3>Cart Total: </h3>
+                  <h3>LKR {finalAmount.toLocaleString()}</h3>
+                </div>
               </div>
-            </Box>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
       ) : (
-        <Typography>Your cart is empty.</Typography>
+        <h4>Your cart is empty.</h4>
       )}
     </div>
   );
