@@ -190,7 +190,7 @@ export default function NavBar() {
                   color: theme === 'dark' ? '#ffffff' : '#000000',
                   fontSize: 14,
                 }}
-                onClick={() => navigate('/favorite')}
+                onClick={handleFavoriteClick}
               >
                 FAVORITES
               </Button>
