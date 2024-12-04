@@ -7,6 +7,7 @@ import master from "../../assets/paymentMethodImages/master.png";
 import diners from "../../assets/paymentMethodImages/diners.png";
 import amex from "../../assets/paymentMethodImages/amex.png";
 import "./Footer.css";
+import { Twitter, WhatsApp, X } from "@mui/icons-material";
 
 function Footer() {
   return (
@@ -39,6 +40,15 @@ function Footer() {
           </IconButton>
           <IconButton>
             <InstagramIcon className="footer-icons" sx={{ color: "#ffffff" }} />
+          </IconButton>
+          <IconButton>
+            <WhatsApp className="footer-icons" sx={{ color: "#ffffff" }} />
+          </IconButton>
+          <IconButton>
+            <Twitter className="footer-icons" sx={{ color: "#ffffff" }} />
+          </IconButton>
+          <IconButton>
+            <X className="footer-icons" sx={{ color: "#ffffff" }} />
           </IconButton>
         </div>
         <h4>ACCEPT TO PAY</h4>

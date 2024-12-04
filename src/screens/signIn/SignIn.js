@@ -89,8 +89,8 @@ const SignIn = () => {
           }}
         >
           <Box
-            width="60%"
-            height="80%"
+            width="80%"
+            height="85%"
             display="flex"
             flexDirection="column"
             justifyContent="center"

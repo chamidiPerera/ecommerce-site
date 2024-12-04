@@ -26,6 +26,7 @@
 
 .footer-right {
   border-left: 0.5px solid white;
+  height: 350px;
   padding-left: var(--spacing-md);
 }
 
@@ -92,7 +93,7 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    padding: 10px;
+    padding: 14px;
     flex-direction: column;
     align-items: center;
     text-align: center;

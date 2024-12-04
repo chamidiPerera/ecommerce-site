@@ -105,10 +105,11 @@ function Products() {
           variant="outlined"
           startIcon={<FilterListIcon />}
           onClick={handleFilterMenuOpen}
+          className='filter-btn'
           sx={{
             height: '36px',
             padding: '0 12px',
-            minWidth: '150px',
+            minWidth: '200px',
             borderColor: 'black',
             color: 'black',
             fontSize: '14px',
