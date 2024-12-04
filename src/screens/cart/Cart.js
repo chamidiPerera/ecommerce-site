@@ -165,6 +165,12 @@ function Cart() {
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
                   className="promo-code-field"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      border: "1px solid black",
+                      borderRadius: "10px",
+                    },
+                  }}
                 />
 
                 <Button
