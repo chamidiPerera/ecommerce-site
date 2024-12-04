@@ -11,12 +11,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import toast from 'react-hot-toast';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import ModeToggle from '../modeToggle/ModeToggle';
-import SearchIcon from '@mui/icons-material/Search';
 
 import './NavBar.css';
-import toast from 'react-hot-toast';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
