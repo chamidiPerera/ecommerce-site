@@ -190,7 +190,7 @@ export default function NavBar() {
                   color: theme === 'dark' ? '#ffffff' : '#000000',
                   fontSize: 14,
                 }}
-                onClick={() => navigate('/favorite')}
+                onClick={handleFavoriteClick}
               >
                 FAVORITES
               </Button>
@@ -221,10 +221,30 @@ export default function NavBar() {
                 onBlur={handleSearchBlur}
                 onKeyDown={handleKeyDown}
                 sx={{
-                  width: '300px',
+                  transition: 'all 0.3s ease',
+                  width: isSearchOpen ? '300px' : '0px',
+                  opacity: isSearchOpen ? 1 : 0,
+                  marginLeft: isSearchOpen ? '10px' : '0',
                   backgroundColor: '#f9f9f9',
                   borderRadius: '30px',
                   padding: '2px 10px',
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '30px',
+                    height: '50px',
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    color: '#333',
+                    '& fieldset': {
+                      border: 'none',
+                    },
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '10px 10px',
+                  },
+                  '& input::placeholder': {
+                    fontStyle: 'italic',
+                    color: '#aaa',
+                  },
                 }}
               />
             )}
